@@ -1,0 +1,82 @@
+# CuaderCampo
+
+> Tu cuaderno de campo, siempre al día. Cuaderno de campo digital para agricultores, cooperativas y asesores en España, preparado para el SIEX (cuaderno digital de explotación agrícola, Real Decreto 1054/2022). Recintos SIGPAC, plantaciones, tratamientos fitosanitarios con validaciones, fertilización, riego, cosechas e inventario desde el móvil.
+
+Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Contacto: hola@cuadercampo.com
+
+## Por qué existe
+
+- **Porque el papel se queda corto**: El cuaderno de explotación lleva años siendo obligatorio, pero en la mayoría de las fincas sigue siendo una libreta con manchas de caldo que se rellena de memoria. Cuando llega una inspección, el problema no es haberlo hecho mal: es no poder demostrar que se hizo bien.
+- **Porque llega el cuaderno digital**: Con el SIEX, el cuaderno pasa a ser digital y a hablar el idioma de la Administración: códigos oficiales, catálogos y ficheros validados. Las herramientas que había estaban pensadas para la oficina, no para quien está en el tajo.
+- **Porque las cooperativas no dan abasto**: Los técnicos dedican semanas a pasar a limpio lo que otros apuntaron en papel. Ese tiempo debería estar en el campo, asesorando.
+
+## Funciones
+
+- **Recintos SIGPAC y mapa**: Dibuja el contorno de tu finca sobre el mapa o importa tus recintos SIGPAC.
+- **Plantaciones**: Cultivos, variedades y marcos de plantación de cada finca.
+- **Tratamientos fitosanitarios**: Registro fitosanitario conforme a la normativa, con validaciones antes de guardar.
+- **Fertilización y plan de abonado**: Abonados con sus unidades fertilizantes de N, P y K por hectárea.
+- **Riego**: Riegos por plantación, con su volumen y la procedencia del agua.
+- **Cosechas y trazabilidad**: La producción de cada plantación, con su destino y los plazos de seguridad.
+- **Labores culturales**: Poda, siembra, desbroce, recolección… sin horas ni costes.
+- **Inventario y facturas**: El stock se descuenta solo al aplicar.
+- **Personas, aplicadores y maquinaria**: Quién trabaja en la finca, sus carnets y los equipos con los que aplicas.
+- **Asesoramiento técnico**: Visitas, instrucciones y validación de tu asesor con su ROPO.
+- **Cooperativas**: Comparte cada finca con tu cooperativa, con el nivel de acceso que elijas.
+- **Cuaderno digital oficial (SIEX)**: Preparado para el cuaderno digital obligatorio.
+
+## Para quién
+
+- [Agricultores](https://cuadercampo.com/para-agricultores.html): Anota tratamientos, riegos y cosechas desde el móvil, en el mismo tajo. El cuaderno oficial se hace solo.
+- [Cooperativas](https://cuadercampo.com/para-cooperativas.html): Un panel con las fincas que tus socios comparten contigo, técnicos asignados y tratamientos validados con ROPO.
+- [Asesores y técnicos](https://cuadercampo.com/para-asesores.html): Visitas, instrucciones y validaciones con tu ROPO, sobre datos de campo reales y en formato oficial.
+- [Explotaciones con equipo](https://cuadercampo.com/para-explotaciones.html): Empleados con cargos, aplicadores con carnet, maquinaria con ITEAF e inventario por lotes. Varios titulares, un solo panel.
+
+## Cómo funciona
+
+1. Crea tu cuenta: Con tu correo y tu móvil. Te enviamos un código por SMS para proteger tu cuaderno.
+2. Da de alta tu finca: Nombre, titular y explotación REA. Configúrala en cuatro pasos y elige las labores que haces.
+3. Dibuja o importa tus recintos: Sobre el mapa o desde SIGPAC. Agrúpalos en huertas si los trabajas juntos.
+4. Registra tus plantaciones: Cultivo, variedad, marco y fecha de plantación sobre uno o varios recintos.
+5. Anota desde el campo: Tratamientos, abonados, riegos, labores y cosechas. Con el móvil, en el tajo y en un minuto.
+6. Descarga y comparte: Tu cuaderno oficial en PDF, Excel o exportación SIEX. Compártelo con tu cooperativa si quieres.
+
+## Planes (precios sin IVA, sin permanencia, 30 días de prueba del plan Finca)
+
+  - Huerta: 0 € (Gratis para siempre). Para empezar con una finca pequeña y dejar el papel.
+  - Finca: 12 €/mes (120 € al año (2 meses gratis)). Para el agricultor profesional que quiere cumplir sin perder tiempo.
+  - Explotación: 29 €/mes (290 € al año (2 meses gratis)). Para explotaciones con equipo, varios titulares o muchas hectáreas.
+  - Cooperativa: A medida (Desde 1,50 € por finca gestionada y mes). Para cooperativas, SAT y empresas de asesoramiento.
+
+## Preguntas frecuentes
+
+- **¿Qué es CuaderCampo?** Es un cuaderno de campo digital para agricultores, cooperativas y asesores. Registras recintos, plantaciones, tratamientos, abonados, riegos, labores y cosechas desde el móvil, y CuaderCampo genera el cuaderno de explotación oficial, preparado para el SIEX.
+- **¿Es obligatorio el cuaderno de campo digital?** El cuaderno de explotación es obligatorio desde hace años para quien usa productos fitosanitarios. El Real Decreto 1054/2022 crea el Sistema de Información de Explotaciones Agrícolas (SIEX) y el cuaderno digital, cuya obligatoriedad se aplica de forma progresiva según el calendario que marcan el Ministerio y las comunidades autónomas. CuaderCampo te deja preparado tanto si ya te afecta como si no.
+- **¿Qué es el SIEX?** Es el sistema oficial en el que se integra la información de las explotaciones agrícolas: la declaración de cultivos, el cuaderno digital y los registros de tratamientos y fertilización. CuaderCampo guarda tus datos con los códigos y catálogos oficiales y exporta el cuaderno en el formato validado.
+- **¿Necesito instalar algo?** No. CuaderCampo funciona desde el navegador del móvil, la tableta o el ordenador. Si quieres, la añades a la pantalla de inicio y se abre como una app, sin pasar por ninguna tienda.
+- **¿Cuánto cuesta?** El plan Huerta es gratuito para una finca de hasta 5 hectáreas. El plan Finca cuesta 12 €/mes y el plan Explotación 29 €/mes, con dos meses gratis si pagas al año. Las cooperativas tienen un plan a medida. Puedes probar el plan Finca gratis durante 30 días.
+- **¿Puedo cambiar de plan o darme de baja?** Sí, cuando quieras y desde tu cuenta. Si bajas al plan gratuito, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.
+- **¿De quién son mis datos?** Tuyos. Tú decides con qué cooperativa o asesor compartes cada finca y con qué nivel de acceso, y puedes retirarlo. No vendemos ni cedemos tus datos a terceros.
+- **¿Puedo importar mis recintos SIGPAC?** Sí. Puedes importar tus recintos o dibujarlos sobre el mapa. Después los agrupas en huertas (UHC) si los trabajas de forma conjunta.
+- **¿Cómo sé qué productos puedo usar?** El vademécum de fitosanitarios incluye los usos autorizados, las dosis y los plazos de seguridad. Al registrar una aplicación, CuaderCampo te avisa si el producto no está autorizado para tu cultivo, si su registro ha caducado o si la dosis está fuera de rango.
+- **¿Qué pasa si me equivoco al registrar un tratamiento?** Puedes editarlo o anularlo. Una aplicación anulada no se borra: queda registrada como anulada, con su motivo, y el producto vuelve al inventario.
+- **¿Funciona en toda España?** Sí. CuaderCampo trabaja con SIGPAC y con los catálogos oficiales del Ministerio, válidos en todas las comunidades autónomas, también en Canarias.
+- **¿Puedo descargar mi cuaderno?** Sí, en PDF para imprimir o enseñar en una inspección, en Excel para tu gestor y en el fichero oficial del cuaderno digital.
+
+## Más información
+
+- [Funciones](https://cuadercampo.com/funciones.html)
+- [Cuaderno digital SIEX](https://cuadercampo.com/cuaderno-digital-siex.html)
+- [Por cultivo](https://cuadercampo.com/cultivos.html)
+- [Ejemplos de uso](https://cuadercampo.com/ejemplos.html) (escenarios ilustrativos)
+- [Planes y precios](https://cuadercampo.com/planes.html)
+- [Quiénes somos](https://cuadercampo.com/quienes-somos.html)
+- [Preguntas frecuentes](https://cuadercampo.com/preguntas-frecuentes.html)
+- [Contacto](https://cuadercampo.com/contacto.html)
+
+## Optional
+
+- [Aviso legal](https://cuadercampo.com/aviso-legal.html)
+- [Política de privacidad](https://cuadercampo.com/politica-de-privacidad.html)
+- [Política de cookies](https://cuadercampo.com/cookies.html)
+- [Sitemap](https://cuadercampo.com/sitemap.xml)
