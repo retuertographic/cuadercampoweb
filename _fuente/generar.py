@@ -143,7 +143,7 @@ def datos_estructurados(url, cuerpo, extra=None):
         '@type': 'Organization', '@id': BASE + '#org', 'name': 'CuaderCampo', 'url': BASE,
         'logo': BASE + 'assets/icono-512.png', 'image': BASE + 'assets/og.png', 'email': EMPRESA['email'],
         'slogan': EMPRESA['lema'],
-        'description': 'Cuaderno de campo digital para agricultores, cooperativas y asesores, preparado para el SIEX.',
+        'description': 'Cuaderno de campo digital para agricultores y cooperativas, preparado para el SIEX.',
         'areaServed': {'@type': 'Country', 'name': 'España'},
     }, {
         '@type': 'WebSite', '@id': BASE + '#web', 'url': BASE, 'name': 'CuaderCampo',
@@ -181,7 +181,7 @@ def ld_app():
                 continue
             ofertas.append({'@type': 'Offer', 'name': '%s (%s)' % (nombre, periodo),
                             'price': precio.replace(' €', '').replace(',', '.'), 'priceCurrency': 'EUR',
-                            'description': 'Precio por mes con IGIC incluido, facturación %s' % periodo,
+                            'description': 'Precio por mes con impuestos incluidos, facturación %s' % periodo,
                             'url': BASE + 'planes.html'})
     return {
         '@type': 'SoftwareApplication', '@id': BASE + '#app', 'name': 'CuaderCampo',
@@ -247,7 +247,7 @@ def form_contacto(titulo='¿Hablamos de tu finca?',
                   asunto='Consulta desde la web', boton='Enviar mensaje', ancla='escribenos', campos='contacto'):
     if campos == 'contacto':
         opc = ''.join('<option>%s</option>' % o for o in
-                      ['Agricultor o agricultora', 'Cooperativa o SAT', 'Asesor o técnico', 'Explotación con empleados'])
+                      ['Agricultor o agricultora', 'Cooperativa o SAT', 'Técnico de cooperativa', 'Explotación grande'])
         html_campos = parcial('campos-contacto', opciones=opc)
     else:
         html_campos = parcial('campos-cooperativa')
@@ -385,7 +385,7 @@ def tarjetas_planes(compacto=False):
   {boton}
 </div>''')
     return ('<div class="planes-zona">%s<div class="grid g4 planes">%s</div>'
-            '<p class="note-inline nota-precios">Precios finales con IGIC incluido. Con la facturación anual pagas 10 meses y disfrutas 12.</p></div>'
+            '<p class="note-inline nota-precios">Precios finales con impuestos incluidos. Con la facturación anual te ahorras dos meses.</p></div>'
             % (selector_periodo(), ''.join(out)))
 
 
@@ -395,7 +395,7 @@ def relacionados(slugs):
         'cuaderno-digital-siex': ('sello', 'Cuaderno digital SIEX', 'Qué cambia y cómo te prepara CuaderCampo.'),
         'como-funciona': ('engranaje', 'Cómo funciona', 'De la cuenta al cuaderno oficial, en seis pasos.'),
         'planes': ('etiqueta', 'Planes y precios', 'Gratis para empezar, sin permanencia.'),
-        'para-quien': ('personas', 'Para quién', 'Agricultores, cooperativas, asesores y explotaciones.'),
+        'para-quien': ('personas', 'Para quién', 'Agricultores, cooperativas, técnicos y explotaciones grandes.'),
         'cultivos': ('brote', 'Por cultivo', 'Olivar, viñedo, cítricos, frutales, huerta y más.'),
         'ejemplos': ('estrella', 'Ejemplos de uso', 'Así se usa CuaderCampo en fincas distintas.'),
         'quienes-somos': ('corazon', 'Quiénes somos', 'Por qué hacemos CuaderCampo.'),
@@ -561,7 +561,7 @@ def p_index():
 </div></div></section>
 
 <section><div class="wrap">
-  {cabeza('Para quién', 'Un mismo cuaderno, cuatro maneras de usarlo', 'El agricultor anota, la cooperativa gestiona, el asesor valida. Cada uno ve lo que le toca.')}
+  {cabeza('Para quién', 'Un mismo cuaderno, cuatro maneras de usarlo', 'El agricultor anota, la cooperativa gestiona, su técnico valida. Cada uno ve lo que le toca.')}
   <div class="grid g4 sols">{sols}</div>
 </div></section>
 
@@ -630,14 +630,14 @@ def p_funciones():
 {relacionados(['cuaderno-digital-siex', 'como-funciona', 'planes'])}
 '''
     return pagina('funciones', 'Funciones — Recintos SIGPAC, tratamientos, fertilización, riego e inventario | CuaderCampo',
-                  'Recintos SIGPAC, plantaciones, tratamientos con validaciones, asistente de IA por voz y chat, fertilización N-P-K, riego, cosechas, inventario por lotes, aplicadores, asesor, cooperativas y cuaderno oficial SIEX.',
+                  'Recintos SIGPAC, plantaciones, tratamientos con validaciones, asistente de IA por voz y chat, fertilización N-P-K, riego, cosechas, inventario por lotes, aplicadores, cooperativas y su técnico y cuaderno oficial SIEX.',
                   cuerpo, 'funciones', ld=[ld_app()])
 
 
 def p_para_quien():
     sols = ''.join(tarjeta_solucion(s) for s in SOLUCIONES)
     cuerpo = page_head('Un mismo cuaderno, cuatro maneras de usarlo',
-                       'El agricultor anota, la cooperativa gestiona, el asesor valida y la explotación organiza a su equipo. Cada uno ve lo que le toca, y nadie teclea dos veces lo mismo.',
+                       'El agricultor anota, la cooperativa gestiona y su técnico valida. Cada uno ve lo que le toca, y nadie teclea dos veces lo mismo.',
                        [('', 'Para quién')], 'Para quién') + f'''
 <section><div class="wrap">
   <div class="grid g2 sols">{sols}</div>
@@ -650,11 +650,11 @@ def p_para_quien():
     <div class="card"><span class="ico">{ico('insignia')}</span><h3>El técnico, sobre datos reales</h3><p>Ve las fincas que tiene asignadas, emite instrucciones y valida con su ROPO lo que se aplicó.</p></div>
   </div>
 </div></section>
-{panel('¿No sabes por dónde empezar?', 'Escríbenos y te contamos cómo encaja CuaderCampo en tu caso: una finca familiar, una explotación con equipo o una cooperativa con cientos de socios.', btn('#escribenos', 'Hablemos', 'btn-primary', 'mail') + btn_crear('Crear cuenta gratis', 'btn-line'))}
+{panel('¿No sabes por dónde empezar?', 'Escríbenos y te contamos cómo encaja CuaderCampo en tu caso: una finca familiar, una explotación grande o una cooperativa con cientos de socios.', btn('#escribenos', 'Hablemos', 'btn-primary', 'mail') + btn_crear('Crear cuenta gratis', 'btn-line'))}
 {relacionados(['funciones', 'cultivos', 'ejemplos'])}
 '''
-    return pagina('para-quien', 'Para quién es CuaderCampo — Agricultores, cooperativas, asesores y explotaciones',
-                  'CuaderCampo para agricultores, cooperativas y SAT, asesores con ROPO y explotaciones con empleados. Un mismo cuaderno de campo, cada uno con lo que le toca.',
+    return pagina('para-quien', 'Para quién es CuaderCampo — Agricultores, cooperativas, técnicos y explotaciones grandes',
+                  'CuaderCampo para agricultores, cooperativas y SAT, sus técnicos con ROPO y explotaciones con muchas fincas. Un mismo cuaderno de campo, cada uno con lo que le toca.',
                   cuerpo, 'para-quien')
 
 
@@ -725,7 +725,7 @@ def p_siex():
              ('matraz', 'Tratamientos', 'Producto, nº de registro, dosis, plaga, justificación, estado fenológico, aplicador y equipo.'),
              ('gota-hoja', 'Fertilización', 'Material fertilizante, riqueza, método y aportes de N, P y K por hectárea.'),
              ('azada', 'Actividades', 'Siembras, labores, riegos, cosechas y tratamientos postcosecha.'),
-             ('personas', 'Personas y equipos', 'Asesor con ROPO, aplicadores con carnet y maquinaria con inspección ITEAF.')]
+             ('personas', 'Personas y equipos', 'Técnico con ROPO, aplicadores con carnet y maquinaria con inspección ITEAF.')]
     cards = ''.join('<div class="card"><span class="ico">%s</span><h3>%s</h3><p>%s</p></div>' % (ico(i), t, d) for i, t, d in datos)
     cuerpo = page_head('El cuaderno digital SIEX, explicado sin jerga',
                        'Qué es el SIEX, qué cambia en tu cuaderno de campo y cómo te deja preparado CuaderCampo, te afecte ya o no.',
@@ -753,7 +753,7 @@ def p_siex():
     <ul class="checks">
       <li>{ico('check')}<span><b>Catálogos oficiales en cada registro</b>Productos, cultivos, plagas, estados fenológicos, unidades y materiales fertilizantes.</span></li>
       <li>{ico('check')}<span><b>Validaciones antes de guardar</b>Datos obligatorios, dosis, plazos y autorizaciones, en el momento.</span></li>
-      <li>{ico('check')}<span><b>Un cuaderno por titular y campaña</b>Sin mezclar explotaciones aunque compartan finca o equipo.</span></li>
+      <li>{ico('check')}<span><b>Un cuaderno por finca y campaña</b>Sin mezclar registros entre fincas ni entre campañas.</span></li>
       <li>{ico('check')}<span><b>Exportación validada</b>Fichero oficial del cuaderno digital, además de PDF y Excel.</span></li>
       <li>{ico('check')}<span><b>Borrados comunicables</b>Lo anulado conserva su identificador para comunicar la baja.</span></li>
     </ul>
@@ -806,7 +806,7 @@ def p_ejemplos():
 {relacionados(['para-quien', 'cultivos', 'funciones'])}
 '''
     return pagina('ejemplos', 'Ejemplos de uso de CuaderCampo — Fincas, explotaciones y cooperativas',
-                  'Escenarios de uso de CuaderCampo en olivar, viñedo, invernadero, platanera, cooperativas y asesores.',
+                  'Escenarios de uso de CuaderCampo en olivar, viñedo, invernadero, platanera y cooperativas.',
                   cuerpo, 'funciones')
 
 
@@ -864,21 +864,21 @@ def p_como():
 def p_planes():
     filas = [
         ('Precio mensual', '0 €', '12 €/mes', '29 €/mes', 'Desde 1,50 €/finca'),
-        ('Precio con pago anual', '0 €', '9,90 €/mes', '24 €/mes', 'Desde 1,25 €/finca'),
+        ('Precio con pago anual', '0 €', '10 €/mes', '24 €/mes', 'Desde 1,25 €/finca'),
         ('Fincas', '1', 'Hasta 3', 'Ilimitadas', 'Las de tus socios'),
         ('Superficie', 'Hasta 5 ha', 'Hasta 60 ha', 'Ilimitada', 'Ilimitada'),
         ('Recintos SIGPAC, mapa y plantaciones', '✓', '✓', '✓', '✓'),
         ('Tratamientos con vademécum y validaciones', '✓', '✓', '✓', '✓'),
         ('Labores, riegos y cosechas', '✓', '✓', '✓', '✓'),
-        ('Asistente de IA por voz y chat', '30 al mes', '✓', '✓', '✓'),
-        ('Fertilización y plan de abonado', '—', '✓', '✓', '✓'),
+        ('Asistente de IA (anotaciones por voz o chat)', '30 al mes', '150 al mes', '500 al mes', '40 por finca y mes, o sin límite con tu clave'),
+        ('Fertilización con N, P y K', '—', '✓', '✓', '✓'),
         ('Inventario por lotes y facturas', '—', '✓', '✓', '✓'),
         ('Aplicadores, carnets y maquinaria ITEAF', '—', '✓', '✓', '✓'),
-        ('Compartir con cooperativa o asesor', '—', '✓', '✓', '✓'),
+        ('Compartir con tu cooperativa gestora', '—', '✓', '✓', '✓'),
         ('Exportación SIEX, PDF y Excel', 'Solo PDF', '✓', '✓', '✓'),
-        ('Empleados con cargos y permisos', '—', '—', '✓', '✓'),
-        ('Cuadernos por titular', '—', '—', '✓', '✓'),
-        ('Instrucciones y validación del asesor', '—', '—', '✓', '✓'),
+        ('Biblioteca de documentos de la finca', '—', '—', '✓', '✓'),
+        ('Instrucciones de tratamiento del técnico (ROPO)', '—', '—', '—', '✓'),
+        ('Descuento del 15 % para socios', '—', '—', '—', '✓'),
         ('Panel de cooperativa y técnicos', '—', '—', '—', '✓'),
         ('Soporte', 'Correo', 'Correo', 'Prioritario', 'Dedicado'),
     ]
@@ -886,21 +886,21 @@ def p_planes():
     cuerpo_t = ''.join('<tr><th scope="row">%s</th>%s</tr>' % (f[0], ''.join('<td data-col="%s">%s</td>' % (PLANES[i][1], v) for i, v in enumerate(f[1:]))) for f in filas)
     faq_planes = [
         ('¿Necesito tarjeta para empezar?', 'No. El plan CuaderHuerta es gratuito y la prueba de %d días del plan CuaderFinca tampoco pide tarjeta.' % PRUEBA_DIAS),
-        ('¿Los precios llevan impuestos?', 'Sí. Todos los precios que ves son finales, con el IGIC incluido. Lo que ves es lo que pagas.'),
-        ('¿Cuánto ahorro con el pago anual?', 'Dos meses: pagas 10 y disfrutas 12. CuaderFinca queda en 9,90 €/mes (118,80 € al año) y CuaderExplotación en 24 €/mes (288 € al año).'),
-        ('¿El asistente de IA cuesta aparte?', 'No. Va incluido en CuaderFinca, CuaderExplotación y CuaderCooperativa, y CuaderHuerta trae 30 anotaciones por voz o chat al mes. También puedes usar tu propia clave de IA (BYOK) sin coste adicional.'),
+        ('¿Los precios llevan impuestos?', 'Sí. Todos los precios que ves son finales, con los impuestos incluidos. Lo que ves es lo que pagas.'),
+        ('¿Cuánto ahorro con el pago anual?', 'Dos meses: CuaderFinca queda en 10 €/mes (120 € al año) y CuaderExplotación en 24 €/mes (288 € al año).'),
+        ('¿El asistente de IA cuesta aparte?', 'No, va incluido en todos los planes con un número de anotaciones al mes: 30 en CuaderHuerta, 150 en CuaderFinca y 500 en CuaderExplotación. En CuaderCooperativa hay 40 por finca gestionada y mes, compartidas entre técnicos y socios, o sin límite si la cooperativa usa su propia clave de IA. Una anotación es un dictado o una conversación de chat que termina en un registro. Si las agotas, sigues anotando igual con los formularios y el contador se reinicia el día 1.'),
         ('¿Hay permanencia?', 'No. Pagas mes a mes o un año por adelantado con dos meses gratis, y puedes cambiar de plan o darte de baja cuando quieras.'),
         ('¿Qué pasa con mis datos si dejo de pagar?', 'Tu cuenta pasa al plan CuaderHuerta. No se borra nada: puedes seguir consultando tus registros y descargar tus cuadernos.'),
-        ('¿Y si soy socio de una cooperativa con plan CuaderCooperativa?', 'Tu cooperativa puede incluir tus fincas en su plan. Pregúntales: muchas lo ofrecen sin coste para el socio.'),
+        ('¿Y si soy socio de una cooperativa con plan CuaderCooperativa?', 'Tu cooperativa puede incluir tus fincas en su plan, y entonces tienen las funciones de CuaderFinca sin coste para ti. Si prefieres tu propio plan, como socio tienes un 15 % de descuento en CuaderFinca y CuaderExplotación, y tu cooperativa deja de pagar por esas fincas.'),
         ('¿Cómo pago?', 'Con tarjeta o domiciliación bancaria desde tu cuenta. Las cooperativas pueden pagar por transferencia contra factura.'),
     ]
     cuerpo = page_head('Gratis para empezar. Claro cuando creces',
-                       'Sin permanencia y con %d días de prueba del plan CuaderFinca. Elige según tus fincas y tu equipo; puedes cambiar cuando quieras.' % PRUEBA_DIAS,
+                       'Sin permanencia y con %d días de prueba del plan CuaderFinca. Elige según tus fincas y tus hectáreas; puedes cambiar cuando quieras.' % PRUEBA_DIAS,
                        [('', 'Planes')], 'Planes y precios') + f'''
 <section><div class="wrap">
   <h2 class="sr-only">Elige tu plan</h2>
   {tarjetas_planes()}
-  <p class="note-inline" style="margin-top:8px">El acceso de asesores invitados a una finca es gratuito.</p>
+  <p class="note-inline" style="margin-top:8px">Si tu finca ya está en tu propio plan, tu cooperativa gestora no paga por ella.</p>
 </div></section>
 
 <section class="alt"><div class="wrap">
@@ -912,10 +912,10 @@ def p_planes():
   {cabeza('Preguntas frecuentes', 'Dudas sobre planes y pagos')}
   {faq(faq_planes)}
 </div></section>
-{panel('¿Eres una cooperativa o una empresa de asesoramiento?', 'Te preparamos una propuesta a medida, con alta y formación para tus técnicos y tus socios.', btn('para-cooperativas.html#alta', 'Solicitar propuesta', 'btn-primary', 'edificio') + btn_crear('Crear cuenta gratis', 'btn-line'))}
+{panel('¿Eres una cooperativa o una SAT?', 'Te preparamos una propuesta a medida, con alta y formación para tus técnicos y tus socios.', btn('para-cooperativas.html#alta', 'Solicitar propuesta', 'btn-primary', 'edificio') + btn_crear('Crear cuenta gratis', 'btn-line'))}
 '''
     return pagina('planes', 'Planes y precios — Cuaderno de campo gratis para empezar | CuaderCampo',
-                  'CuaderHuerta gratis para una finca de hasta 5 ha, CuaderFinca desde 9,90 €/mes, CuaderExplotación desde 24 €/mes y CuaderCooperativa a medida. IGIC incluido, sin permanencia.',
+                  'CuaderHuerta gratis para una finca de hasta 5 ha, CuaderFinca desde 10 €/mes, CuaderExplotación desde 24 €/mes y CuaderCooperativa a medida. Impuestos incluidos, sin permanencia.',
                   cuerpo, 'planes', ld=[ld_app(), ld_faq(faq_planes)])
 
 
@@ -970,7 +970,7 @@ def p_faq():
         ('El producto', FAQ_GENERAL[0:1] + FAQ_GENERAL[3:4] + FAQ_GENERAL[7:12]),
         ('Normativa y SIEX', FAQ_GENERAL[1:3]),
         ('Planes y datos', FAQ_GENERAL[4:7]),
-        ('Cooperativas y asesores', SOLUCIONES[1]['faq'] + SOLUCIONES[2]['faq'][:2]),
+        ('Cooperativas y técnicos', SOLUCIONES[1]['faq'] + SOLUCIONES[2]['faq'][:2]),
     ]
     todo = [x for _, l in grupos for x in l]
     bloques = ''.join('<section%s><div class="wrap"><div class="section-head"><h2>%s</h2></div>%s</div></section>'
@@ -985,7 +985,7 @@ def p_faq():
 
 
 def p_contacto():
-    cuerpo = page_head('Hablemos de tu finca', 'Agricultores, cooperativas, asesores o explotaciones: cuéntanos qué necesitas y te contestamos personas.',
+    cuerpo = page_head('Hablemos de tu finca', 'Agricultores, cooperativas, técnicos o explotaciones grandes: cuéntanos qué necesitas y te contestamos personas.',
                        [('', 'Contacto')]) + f'''
 <section><div class="wrap"><div class="grid g3">
   <a class="card rel" href="{APP['entrar']}" rel="noopener"><span class="ico">{ico('llave')}</span><h3>Ya uso CuaderCampo</h3><p>Entra en tu cuaderno. Si necesitas ayuda, escríbenos desde el formulario.</p><span class="more">Entrar {ico('flecha')}</span></a>
@@ -1028,7 +1028,7 @@ def p_privacidad():
         ('Responsable', f'<p>CuaderCampo (titular y NIF: {PENDIENTE}). Contacto: {mail}.</p>'),
         ('Qué datos tratamos en este sitio', '<p>Los que nos facilitas al escribirnos o suscribirte a las novedades: nombre, apellidos, correo electrónico, teléfono (opcional), entidad y el contenido de tu mensaje. Este sitio no tiene formularios que envíen datos a un servidor: al enviar, se abre tu programa de correo con el mensaje redactado.</p>'),
         ('Finalidad y legitimación', '<p>Responder a tu consulta, preparar una propuesta si eres una cooperativa y, si te suscribes, enviarte novedades. La base legal es tu consentimiento, que puedes retirar en cualquier momento.</p>'),
-        ('Datos de la aplicación', '<p>Los datos de tus fincas, recintos, cultivos y registros se tratan en la aplicación solo para prestarte el servicio. Tú decides con qué cooperativa o asesor compartes cada finca. No vendemos ni cedemos tus datos a terceros salvo obligación legal.</p>'),
+        ('Datos de la aplicación', '<p>Los datos de tus fincas, recintos, cultivos y registros se tratan en la aplicación solo para prestarte el servicio. Tú decides qué cooperativa gestiona cada finca. No vendemos ni cedemos tus datos a terceros salvo obligación legal.</p>'),
         ('Conservación', '<p>Conservamos los datos mientras sean necesarios para la finalidad indicada y durante los plazos legales aplicables al cuaderno de explotación.</p>'),
         ('Tus derechos', f'<p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {mail}. También puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>'),
     ]
@@ -1080,7 +1080,7 @@ def llms_txt():
     faq_t = '\n'.join('- **%s** %s' % (q, r) for q, r in FAQ_GENERAL)
     return f"""# CuaderCampo
 
-> {EMPRESA['lema']}. Cuaderno de campo digital para agricultores, cooperativas y asesores en España, preparado para el SIEX (cuaderno digital de explotación agrícola, Real Decreto 1054/2022). Recintos SIGPAC, plantaciones, tratamientos fitosanitarios con validaciones, fertilización, riego, cosechas e inventario desde el móvil.
+> {EMPRESA['lema']}. Cuaderno de campo digital para agricultores y cooperativas en España, preparado para el SIEX (cuaderno digital de explotación agrícola, Real Decreto 1054/2022). Recintos SIGPAC, plantaciones, tratamientos fitosanitarios con validaciones, fertilización, riego, cosechas e inventario desde el móvil.
 
 Web: {BASE} · Aplicación: {APP['entrar']} · Contacto: {EMPRESA['email']}
 
@@ -1100,7 +1100,7 @@ Web: {BASE} · Aplicación: {APP['entrar']} · Contacto: {EMPRESA['email']}
 
 {pasos_t}
 
-## Planes (precios con IGIC incluido, sin permanencia, pago anual con dos meses gratis, {PRUEBA_DIAS} días de prueba de CuaderFinca)
+## Planes (precios con impuestos incluidos, sin permanencia, pago anual con dos meses gratis, {PRUEBA_DIAS} días de prueba de CuaderFinca)
 
 {planes}
 
