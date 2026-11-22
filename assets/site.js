@@ -145,3 +145,33 @@ var T = {
     window.location.href = url;
   });
 })();
+
+// Planes: interruptor mensual/anual. Cambia los textos marcados con data-mensual / data-anual.
+(function () {
+  var selectores = document.querySelectorAll('.periodo');
+  if (!selectores.length) return;
+  var guardado = null;
+  try { guardado = localStorage.getItem('cc-periodo'); } catch (e) {}
+  function aplicar(periodo) {
+    selectores.forEach(function (sel) {
+      sel.querySelectorAll('button').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.periodo === periodo));
+      });
+    });
+    document.querySelectorAll('[data-mensual]').forEach(function (el) {
+      var nuevo = el.dataset[periodo];
+      if (el.textContent === nuevo) return;
+      el.classList.add('cambiando');
+      setTimeout(function () { el.textContent = nuevo; el.classList.remove('cambiando'); }, 120);
+    });
+    try { localStorage.setItem('cc-periodo', periodo); } catch (e) {}
+  }
+  selectores.forEach(function (sel) {
+    sel.hidden = false;
+    sel.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-periodo]');
+      if (b) aplicar(b.dataset.periodo);
+    });
+  });
+  if (guardado === 'anual') aplicar('anual');
+})();

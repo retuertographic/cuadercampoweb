@@ -23,27 +23,39 @@ APP = {
 PENDIENTE = 'pendiente de completar'
 
 # ---------------------------------------------------------------- Planes
-# (clave, nombre, precio mensual, precio anual, para quién, incluye, destacado)
+# Precios finales con IGIC incluido. La facturación anual sale más barata (dos meses gratis).
+# (clave, nombre, para quién,
+#  mensual: (precio, sufijo, texto bajo el precio),
+#  anual:   (precio, sufijo, texto bajo el precio),
+#  incluye)
 PLANES = [
-    ('huerta', 'Huerta', '0 €', 'Gratis para siempre',
-     'Para empezar con una finca pequeña y dejar el papel.',
+    ('huerta', 'CuaderHuerta', 'Para empezar con una finca pequeña y dejar el papel.',
+     ('0 €', '', 'Gratis para siempre'),
+     ('0 €', '', 'Gratis para siempre'),
      ['1 finca y hasta 5 ha', 'Recintos SIGPAC y mapa', 'Plantaciones, labores y riegos',
-      'Tratamientos con vademécum y validaciones', 'Cuaderno en PDF', 'App instalable en el móvil']),
-    ('finca', 'Finca', '12 €', '120 € al año (2 meses gratis)',
-     'Para el agricultor profesional que quiere cumplir sin perder tiempo.',
-     ['Hasta 3 fincas y 60 ha', 'Todo lo del plan Huerta', 'Fertilización con N, P y K y plan de abonado',
-      'Inventario por lotes y facturas de compra', 'Aplicadores, carnets y maquinaria ITEAF',
-      'Compartir con tu cooperativa o asesor', 'Exportación oficial SIEX, PDF y Excel']),
-    ('explotacion', 'Explotación', '29 €', '290 € al año (2 meses gratis)',
-     'Para explotaciones con equipo, varios titulares o muchas hectáreas.',
-     ['Fincas y hectáreas ilimitadas', 'Todo lo del plan Finca', 'Empleados con cargos y permisos',
-      'Cuadernos por titular y por campaña', 'Instrucciones y validación del asesor (ROPO)',
-      'Documentos privados de la finca', 'Soporte prioritario por correo y teléfono']),
-    ('cooperativa', 'Cooperativa', 'A medida', 'Desde 1,50 € por finca gestionada y mes',
-     'Para cooperativas, SAT y empresas de asesoramiento.',
+      'Tratamientos con vademécum y validaciones', '30 anotaciones por voz o chat al mes', 'Cuaderno en PDF',
+      'App instalable en el móvil']),
+    ('finca', 'CuaderFinca', 'Para el agricultor profesional que quiere cumplir sin perder tiempo.',
+     ('12 €', '/mes', 'Facturado cada mes · IGIC incluido'),
+     ('9,90 €', '/mes', '118,80 € al año · ahorras 25,20 €'),
+     ['Hasta 3 fincas y 60 ha', 'Todo lo de CuaderHuerta', 'Asistente de IA por voz y chat',
+      'Fertilización con N, P y K y plan de abonado', 'Inventario por lotes y facturas de compra',
+      'Aplicadores, carnets y maquinaria ITEAF', 'Compartir con tu cooperativa o asesor',
+      'Exportación oficial SIEX, PDF y Excel']),
+    ('explotacion', 'CuaderExplotación', 'Para explotaciones con equipo, varios titulares o muchas hectáreas.',
+     ('29 €', '/mes', 'Facturado cada mes · IGIC incluido'),
+     ('24 €', '/mes', '288 € al año · ahorras 60 €'),
+     ['Fincas y hectáreas ilimitadas', 'Todo lo de CuaderFinca', 'Asistente de IA para todo el equipo',
+      'Empleados con cargos y permisos', 'Cuadernos por titular y por campaña',
+      'Instrucciones y validación del asesor (ROPO)', 'Documentos privados de la finca',
+      'Soporte prioritario por correo y teléfono']),
+    ('cooperativa', 'CuaderCooperativa', 'Para cooperativas, SAT y empresas de asesoramiento.',
+     ('A medida', '', 'Desde 1,50 € por finca gestionada y mes'),
+     ('A medida', '', 'Desde 1,25 € por finca y mes, facturado al año'),
      ['Panel de cooperativa con todas las fincas', 'Técnicos y asignación de fincas',
-      'Solicitudes de gestión aceptadas por el agricultor', 'Validación de tratamientos con ROPO',
-      'Etiqueta con el color de tu cooperativa', 'Alta y formación de tus socios']),
+      'Asistente de IA para técnicos y socios', 'Solicitudes de gestión aceptadas por el agricultor',
+      'Validación de tratamientos con ROPO', 'Etiqueta con el color de tu cooperativa',
+      'Alta y formación de tus socios']),
 ]
 PLAN_DESTACADO = 'finca'
 PRUEBA_DIAS = 30
@@ -54,7 +66,7 @@ PASOS = [
     ('Da de alta tu finca', 'Nombre, titular y explotación REA. Configúrala en cuatro pasos y elige las labores que haces.'),
     ('Dibuja o importa tus recintos', 'Sobre el mapa o desde SIGPAC. Agrúpalos en huertas si los trabajas juntos.'),
     ('Registra tus plantaciones', 'Cultivo, variedad, marco y fecha de plantación sobre uno o varios recintos.'),
-    ('Anota desde el campo', 'Tratamientos, abonados, riegos, labores y cosechas. Con el móvil, en el tajo y en un minuto.'),
+    ('Anota desde el campo', 'Tratamientos, abonados, riegos, labores y cosechas. A mano, por voz o escribiéndole al asistente de IA, en el tajo y en un minuto.'),
     ('Descarga y comparte', 'Tu cuaderno oficial en PDF, Excel o exportación SIEX. Compártelo con tu cooperativa si quieres.'),
 ]
 
@@ -77,6 +89,15 @@ FUNCIONES = [
      ['Vademécum de fitosanitarios con usos autorizados, dosis y plazos', 'Avisos si el registro está caducado o el producto no está autorizado',
       'Estado fenológico, justificación y eficacia del tratamiento', 'Firma del aplicador con el dedo en la pantalla',
       'Copia una aplicación anterior en un toque', 'Anular sin borrar: el producto vuelve al inventario']),
+    ('asistente', 'microfono', 'terracota', 'Asistente de IA por voz y chat',
+     'Díctalo en voz alta o escríbelo: el asistente rellena el registro por ti.',
+     'Con las manos ocupadas o los guantes puestos, pulsa el micrófono y di lo que has hecho. El asistente de IA entiende tus plantaciones, los productos del vademécum y las unidades, prepara el registro —producto, dosis, plantación, aplicador y fecha— y lo pasa por las mismas validaciones de siempre. Tú lo revisas y lo guardas. También puedes escribirle o preguntarle por tu finca.',
+     ['«He tratado el Olivar 1 con cobre a 2,5 L/ha»: registro listo para revisar',
+      '«¿Cuándo puedo cosechar la Viña Alta?»: te responde con el plazo de seguridad',
+      '«Riego de 40 m³ en los cítricos, agua del pozo»: anotado en segundos',
+      'Resume la campaña o prepara el informe para tu cooperativa',
+      'Nada se guarda sin tu confirmación',
+      'Incluido en los planes de pago, o con tu propia clave de IA (BYOK) sin coste']),
     ('fertilizacion', 'gota-hoja', 'trigo', 'Fertilización y plan de abonado',
      'Abonados con sus unidades fertilizantes de N, P y K por hectárea.',
      'Registra cada abonado con su material fertilizante, su riqueza y el método de aplicación. CuaderCampo calcula los aportes de nitrógeno, fósforo y potasio, los compara con tu plan de abonado y descuenta el producto del inventario, como en los tratamientos.',
@@ -122,6 +143,7 @@ FUNCIONES = [
 ]
 
 TONOS = {
+    # terracota suave: novedades
     'brote': '#E4EDD9', 'salvia': '#DCE5D0', 'trigo': '#F1E7CC', 'agua': '#DCE9E6',
     'bosque': '#234B2C', 'terracota': '#F4E1D4',
 }
@@ -143,9 +165,10 @@ SOLUCIONES = [
             ('Pensado para el móvil', 'Botones grandes, textos claros y se instala como una app, sin pasar por ninguna tienda.'),
             ('Te avisa antes, no después', 'Dosis fuera de rango, plazo de seguridad, carnet caducado o producto sin registro vigente.'),
             ('El inventario cuadra solo', 'Cada aplicación descuenta del stock. Las facturas justifican la procedencia de cada lote.'),
+            ('Anota por voz', 'Pulsa el micrófono, di lo que has hecho y el asistente de IA rellena el registro. Tú solo lo revisas.'),
             ('Repite lo de siempre', 'Copia la aplicación anterior o repite el último riego con un toque.'),
             ('Tú decides quién lo ve', 'Comparte cada finca con tu cooperativa con el nivel de acceso que elijas, o con nadie.'),
-            ('Gratis para empezar', 'El plan Huerta es gratuito para una finca de hasta 5 hectáreas.'),
+            ('Gratis para empezar', 'El plan CuaderHuerta es gratuito para una finca de hasta 5 hectáreas.'),
         ]),
         'faq': [
             ('¿Necesito saber de informática?', 'No. Si usas WhatsApp, sabes usar CuaderCampo. Además, cada apartado tiene una ayuda corta que te explica qué es un recinto, una plantación o una aplicación.'),
@@ -174,7 +197,7 @@ SOLUCIONES = [
             ('El socio manda', 'Cada finca tiene una única gestora y el agricultor puede cambiarla. La confianza se gana, no se impone.'),
         ]),
         'faq': [
-            ('¿Cuánto cuesta para una cooperativa?', 'El plan Cooperativa es a medida y parte de 1,50 € por finca gestionada y mes. Incluye el alta, la formación de los técnicos y una sesión para socios.'),
+            ('¿Cuánto cuesta para una cooperativa?', 'El plan CuaderCooperativa es a medida y parte de 1,50 € por finca gestionada y mes (1,25 € con facturación anual), IGIC incluido. Incluye el alta, la formación de los técnicos y una sesión para socios.'),
             ('¿Puede la cooperativa ver todas las fincas de un socio?', 'Solo las que el socio comparte, y con el nivel de acceso que él elige. Una finca tiene una única cooperativa gestora.'),
             ('¿Mis técnicos necesitan otra herramienta?', 'No. El panel de cooperativa, las asignaciones, las instrucciones y las validaciones están dentro de CuaderCampo.'),
         ],
@@ -200,7 +223,7 @@ SOLUCIONES = [
             ('Menos llamadas', 'El historial de la finca está ahí: ya no hace falta preguntar qué se echó la última vez.'),
         ]),
         'faq': [
-            ('¿Tengo que pagar como asesor?', 'No. El acceso del asesor a las fincas que le invitan es gratuito. Si gestionas muchas fincas de forma independiente, consulta el plan Cooperativa.'),
+            ('¿Tengo que pagar como asesor?', 'No. El acceso del asesor a las fincas que le invitan es gratuito. Si gestionas muchas fincas de forma independiente, consulta el plan CuaderCooperativa.'),
             ('¿Dónde queda mi ROPO?', 'Lo guardas una vez en tu perfil y se usa en cada validación que confirmas.'),
             ('¿Puedo validar desde el móvil?', 'Sí. Toda la aplicación funciona igual en el móvil, la tableta y el ordenador.'),
         ],
@@ -228,7 +251,7 @@ SOLUCIONES = [
         'faq': [
             ('¿Los aplicadores necesitan cuenta?', 'No necesariamente. Puedes tener fichas de aplicadores sin cuenta, con su carnet y su caducidad, y elegirlos al registrar la aplicación.'),
             ('¿Puedo limitar lo que ve cada empleado?', 'Sí. Cada persona tiene un cargo y unos permisos dentro de la finca.'),
-            ('¿Cuántas hectáreas admite?', 'En el plan Explotación, fincas y hectáreas ilimitadas.'),
+            ('¿Cuántas hectáreas admite?', 'En el plan CuaderExplotación, fincas y hectáreas ilimitadas.'),
         ],
         'cta': 'Pon orden en tu explotación',
     },
@@ -278,13 +301,16 @@ FAQ_GENERAL = [
     ('¿Es obligatorio el cuaderno de campo digital?', 'El cuaderno de explotación es obligatorio desde hace años para quien usa productos fitosanitarios. El Real Decreto 1054/2022 crea el Sistema de Información de Explotaciones Agrícolas (SIEX) y el cuaderno digital, cuya obligatoriedad se aplica de forma progresiva según el calendario que marcan el Ministerio y las comunidades autónomas. CuaderCampo te deja preparado tanto si ya te afecta como si no.'),
     ('¿Qué es el SIEX?', 'Es el sistema oficial en el que se integra la información de las explotaciones agrícolas: la declaración de cultivos, el cuaderno digital y los registros de tratamientos y fertilización. CuaderCampo guarda tus datos con los códigos y catálogos oficiales y exporta el cuaderno en el formato validado.'),
     ('¿Necesito instalar algo?', 'No. CuaderCampo funciona desde el navegador del móvil, la tableta o el ordenador. Si quieres, la añades a la pantalla de inicio y se abre como una app, sin pasar por ninguna tienda.'),
-    ('¿Cuánto cuesta?', 'El plan Huerta es gratuito para una finca de hasta 5 hectáreas. El plan Finca cuesta 12 €/mes y el plan Explotación 29 €/mes, con dos meses gratis si pagas al año. Las cooperativas tienen un plan a medida. Puedes probar el plan Finca gratis durante 30 días.'),
+    ('¿Cuánto cuesta?', 'El plan CuaderHuerta es gratuito para una finca de hasta 5 hectáreas. El plan CuaderFinca cuesta 12 €/mes (9,90 €/mes si pagas al año) y el plan CuaderExplotación 29 €/mes (24 €/mes al año). Todos los precios llevan el IGIC incluido. Las cooperativas tienen un plan a medida. Puedes probar el plan CuaderFinca gratis durante 30 días.'),
     ('¿Puedo cambiar de plan o darme de baja?', 'Sí, cuando quieras y desde tu cuenta. Si bajas al plan gratuito, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.'),
     ('¿De quién son mis datos?', 'Tuyos. Tú decides con qué cooperativa o asesor compartes cada finca y con qué nivel de acceso, y puedes retirarlo. No vendemos ni cedemos tus datos a terceros.'),
     ('¿Puedo importar mis recintos SIGPAC?', 'Sí. Puedes importar tus recintos o dibujarlos sobre el mapa. Después los agrupas en huertas (UHC) si los trabajas de forma conjunta.'),
     ('¿Cómo sé qué productos puedo usar?', 'El vademécum de fitosanitarios incluye los usos autorizados, las dosis y los plazos de seguridad. Al registrar una aplicación, CuaderCampo te avisa si el producto no está autorizado para tu cultivo, si su registro ha caducado o si la dosis está fuera de rango.'),
     ('¿Qué pasa si me equivoco al registrar un tratamiento?', 'Puedes editarlo o anularlo. Una aplicación anulada no se borra: queda registrada como anulada, con su motivo, y el producto vuelve al inventario.'),
     ('¿Funciona en toda España?', 'Sí. CuaderCampo trabaja con SIGPAC y con los catálogos oficiales del Ministerio, válidos en todas las comunidades autónomas, también en Canarias.'),
+    ('¿Puedo anotar por voz?', 'Sí. Pulsa el micrófono y di lo que has hecho, por ejemplo «He tratado el Olivar 1 con cobre a 2,5 litros por hectárea». El asistente de IA prepara el registro con la plantación, el producto, la dosis y la fecha, y te lo enseña para que lo revises antes de guardarlo. Si lo prefieres, escríbeselo en el chat.'),
+    ('¿El asistente de IA es un extra de pago?', 'No. Viene incluido en CuaderFinca, CuaderExplotación y CuaderCooperativa, y CuaderHuerta incluye 30 anotaciones por voz o chat al mes. Si prefieres usar tu propia clave de un proveedor de IA (BYOK), puedes hacerlo sin coste adicional.'),
+    ('¿Puede el asistente guardar algo sin que yo lo vea?', 'No. El asistente solo propone: cada registro pasa por las validaciones de dosis, plazos y autorizaciones y no se guarda hasta que tú lo confirmas.'),
     ('¿Puedo descargar mi cuaderno?', 'Sí, en PDF para imprimir o enseñar en una inspección, en Excel para tu gestor y en el fichero oficial del cuaderno digital.'),
 ]
 

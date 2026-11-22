@@ -15,6 +15,7 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 - **Recintos SIGPAC y mapa**: Dibuja el contorno de tu finca sobre el mapa o importa tus recintos SIGPAC.
 - **Plantaciones**: Cultivos, variedades y marcos de plantación de cada finca.
 - **Tratamientos fitosanitarios**: Registro fitosanitario conforme a la normativa, con validaciones antes de guardar.
+- **Asistente de IA por voz y chat**: Díctalo en voz alta o escríbelo: el asistente rellena el registro por ti.
 - **Fertilización y plan de abonado**: Abonados con sus unidades fertilizantes de N, P y K por hectárea.
 - **Riego**: Riegos por plantación, con su volumen y la procedencia del agua.
 - **Cosechas y trazabilidad**: La producción de cada plantación, con su destino y los plazos de seguridad.
@@ -38,15 +39,15 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 2. Da de alta tu finca: Nombre, titular y explotación REA. Configúrala en cuatro pasos y elige las labores que haces.
 3. Dibuja o importa tus recintos: Sobre el mapa o desde SIGPAC. Agrúpalos en huertas si los trabajas juntos.
 4. Registra tus plantaciones: Cultivo, variedad, marco y fecha de plantación sobre uno o varios recintos.
-5. Anota desde el campo: Tratamientos, abonados, riegos, labores y cosechas. Con el móvil, en el tajo y en un minuto.
+5. Anota desde el campo: Tratamientos, abonados, riegos, labores y cosechas. A mano, por voz o escribiéndole al asistente de IA, en el tajo y en un minuto.
 6. Descarga y comparte: Tu cuaderno oficial en PDF, Excel o exportación SIEX. Compártelo con tu cooperativa si quieres.
 
-## Planes (precios sin IVA, sin permanencia, 30 días de prueba del plan Finca)
+## Planes (precios con IGIC incluido, sin permanencia, pago anual con dos meses gratis, 30 días de prueba de CuaderFinca)
 
-  - Huerta: 0 € (Gratis para siempre). Para empezar con una finca pequeña y dejar el papel.
-  - Finca: 12 €/mes (120 € al año (2 meses gratis)). Para el agricultor profesional que quiere cumplir sin perder tiempo.
-  - Explotación: 29 €/mes (290 € al año (2 meses gratis)). Para explotaciones con equipo, varios titulares o muchas hectáreas.
-  - Cooperativa: A medida (Desde 1,50 € por finca gestionada y mes). Para cooperativas, SAT y empresas de asesoramiento.
+  - CuaderHuerta: mensual 0 € (Gratis para siempre); anual 0 € (Gratis para siempre). Para empezar con una finca pequeña y dejar el papel.
+  - CuaderFinca: mensual 12 €/mes (Facturado cada mes · IGIC incluido); anual 9,90 €/mes (118,80 € al año · ahorras 25,20 €). Para el agricultor profesional que quiere cumplir sin perder tiempo.
+  - CuaderExplotación: mensual 29 €/mes (Facturado cada mes · IGIC incluido); anual 24 €/mes (288 € al año · ahorras 60 €). Para explotaciones con equipo, varios titulares o muchas hectáreas.
+  - CuaderCooperativa: mensual A medida (Desde 1,50 € por finca gestionada y mes); anual A medida (Desde 1,25 € por finca y mes, facturado al año). Para cooperativas, SAT y empresas de asesoramiento.
 
 ## Preguntas frecuentes
 
@@ -54,13 +55,16 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 - **¿Es obligatorio el cuaderno de campo digital?** El cuaderno de explotación es obligatorio desde hace años para quien usa productos fitosanitarios. El Real Decreto 1054/2022 crea el Sistema de Información de Explotaciones Agrícolas (SIEX) y el cuaderno digital, cuya obligatoriedad se aplica de forma progresiva según el calendario que marcan el Ministerio y las comunidades autónomas. CuaderCampo te deja preparado tanto si ya te afecta como si no.
 - **¿Qué es el SIEX?** Es el sistema oficial en el que se integra la información de las explotaciones agrícolas: la declaración de cultivos, el cuaderno digital y los registros de tratamientos y fertilización. CuaderCampo guarda tus datos con los códigos y catálogos oficiales y exporta el cuaderno en el formato validado.
 - **¿Necesito instalar algo?** No. CuaderCampo funciona desde el navegador del móvil, la tableta o el ordenador. Si quieres, la añades a la pantalla de inicio y se abre como una app, sin pasar por ninguna tienda.
-- **¿Cuánto cuesta?** El plan Huerta es gratuito para una finca de hasta 5 hectáreas. El plan Finca cuesta 12 €/mes y el plan Explotación 29 €/mes, con dos meses gratis si pagas al año. Las cooperativas tienen un plan a medida. Puedes probar el plan Finca gratis durante 30 días.
+- **¿Cuánto cuesta?** El plan CuaderHuerta es gratuito para una finca de hasta 5 hectáreas. El plan CuaderFinca cuesta 12 €/mes (9,90 €/mes si pagas al año) y el plan CuaderExplotación 29 €/mes (24 €/mes al año). Todos los precios llevan el IGIC incluido. Las cooperativas tienen un plan a medida. Puedes probar el plan CuaderFinca gratis durante 30 días.
 - **¿Puedo cambiar de plan o darme de baja?** Sí, cuando quieras y desde tu cuenta. Si bajas al plan gratuito, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.
 - **¿De quién son mis datos?** Tuyos. Tú decides con qué cooperativa o asesor compartes cada finca y con qué nivel de acceso, y puedes retirarlo. No vendemos ni cedemos tus datos a terceros.
 - **¿Puedo importar mis recintos SIGPAC?** Sí. Puedes importar tus recintos o dibujarlos sobre el mapa. Después los agrupas en huertas (UHC) si los trabajas de forma conjunta.
 - **¿Cómo sé qué productos puedo usar?** El vademécum de fitosanitarios incluye los usos autorizados, las dosis y los plazos de seguridad. Al registrar una aplicación, CuaderCampo te avisa si el producto no está autorizado para tu cultivo, si su registro ha caducado o si la dosis está fuera de rango.
 - **¿Qué pasa si me equivoco al registrar un tratamiento?** Puedes editarlo o anularlo. Una aplicación anulada no se borra: queda registrada como anulada, con su motivo, y el producto vuelve al inventario.
 - **¿Funciona en toda España?** Sí. CuaderCampo trabaja con SIGPAC y con los catálogos oficiales del Ministerio, válidos en todas las comunidades autónomas, también en Canarias.
+- **¿Puedo anotar por voz?** Sí. Pulsa el micrófono y di lo que has hecho, por ejemplo «He tratado el Olivar 1 con cobre a 2,5 litros por hectárea». El asistente de IA prepara el registro con la plantación, el producto, la dosis y la fecha, y te lo enseña para que lo revises antes de guardarlo. Si lo prefieres, escríbeselo en el chat.
+- **¿El asistente de IA es un extra de pago?** No. Viene incluido en CuaderFinca, CuaderExplotación y CuaderCooperativa, y CuaderHuerta incluye 30 anotaciones por voz o chat al mes. Si prefieres usar tu propia clave de un proveedor de IA (BYOK), puedes hacerlo sin coste adicional.
+- **¿Puede el asistente guardar algo sin que yo lo vea?** No. El asistente solo propone: cada registro pasa por las validaciones de dosis, plazos y autorizaciones y no se guarda hasta que tú lo confirmas.
 - **¿Puedo descargar mi cuaderno?** Sí, en PDF para imprimir o enseñar en una inspección, en Excel para tu gestor y en el fichero oficial del cuaderno digital.
 
 ## Más información

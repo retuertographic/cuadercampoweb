@@ -569,3 +569,67 @@ main:focus{outline:none}
   .mock-phone{transform:none}
 }
 @media print{.site-header,.topbar,footer.site,.arriba{display:none}}
+
+/* ---------- Planes: nombre, interruptor mensual/anual ---------- */
+.pn{display:inline-flex;align-items:baseline;line-height:1;white-space:nowrap}
+.pn-c{font-weight:800;letter-spacing:-.03em;color:var(--tierra)}
+.pn-s{font-family:var(--font-hand);font-weight:700;font-size:1.22em;color:var(--bosque);margin-left:1px;letter-spacing:0}
+.plan h3{font-size:24px}
+.planes-zona{display:grid;gap:22px}
+.periodo{
+  justify-self:center;display:inline-flex;gap:4px;padding:5px;border-radius:18px;
+  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.alt .periodo{background:var(--crema)}
+.periodo[hidden]{display:none}
+.periodo button{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border:0;border-radius:14px;
+  background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:15px;cursor:pointer;transition:.15s ease;
+}
+.periodo button:hover{color:var(--bosque)}
+.periodo button[aria-pressed="true"]{background:var(--bosque);color:#fff}
+.periodo .ahorro{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--terracota-suave);color:var(--terracota)}
+.periodo button[aria-pressed="true"] .ahorro{background:var(--brote-claro);color:var(--bosque-osc)}
+.plan-precio b{transition:opacity .15s ease}
+.plan-precio b.cambiando{opacity:.2}
+.nota-precios{text-align:center;justify-self:center}
+
+/* ---------- Novedad: asistente de IA ---------- */
+.nuevo{
+  display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;letter-spacing:.04em;
+  padding:6px 13px;border-radius:999px;background:var(--terracota-suave);color:var(--terracota);margin-bottom:14px;
+}
+.nuevo svg{width:15px;height:15px}
+.nuevo-mini{font-size:12px;padding:4px 10px;margin:0 0 0 6px;vertical-align:middle;letter-spacing:0}
+.topbar .tb-nuevo{color:var(--brote-claro);font-weight:700}
+.mock-chat{
+  width:min(100%,440px);background:var(--crema);border:1px solid var(--line);border-radius:32px;padding:18px;
+  box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:10px;
+}
+.alt .mock-chat{background:var(--crema)}
+.ch-cab{display:flex;align-items:center;gap:12px;padding:4px 4px 12px;border-bottom:1px solid var(--line)}
+.ch-cab b{display:block;color:var(--tierra);font-size:15px;line-height:1.3}
+.ch-cab small{color:var(--muted);font-size:12.5px}
+.ch-ico{width:42px;height:42px;border-radius:14px;background:var(--bosque);color:var(--brote-claro);display:grid;place-items:center;flex:none}
+.ch-ico svg{width:22px;height:22px}
+.ch-msg{max-width:88%;padding:11px 14px;border-radius:18px;font-size:14px;line-height:1.45}
+.ch-msg.yo{align-self:flex-end;background:var(--bosque);color:#fff;border-bottom-right-radius:6px}
+.ch-msg.ia{align-self:flex-start;background:#fff;color:var(--body);border:1px solid var(--line);border-bottom-left-radius:6px}
+.ch-voz{display:flex;align-items:center;gap:3px;margin-bottom:6px;color:var(--brote-claro)}
+.ch-voz svg{width:16px;height:16px;margin-right:4px}
+.ch-voz i{display:block;width:3px;border-radius:2px;background:var(--brote-claro);height:8px}
+.ch-voz i:nth-child(3),.ch-voz i:nth-child(6){height:14px}
+.ch-voz i:nth-child(4){height:18px}
+.ch-ficha{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:10px 0 8px;padding:10px 12px;border-radius:14px;background:var(--salvia);font-size:13px}
+.ch-ficha dt{color:var(--muted)}
+.ch-ficha dd{margin:0;font-weight:700;color:var(--tierra)}
+.ch-ok{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--bosque)}
+.ch-ok svg{width:16px;height:16px;color:var(--brote);stroke-width:2.6}
+.ch-entrada{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;padding:6px 6px 6px 16px;border-radius:16px;background:#fff;border:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.ch-mic{width:40px;height:40px;border-radius:12px;background:var(--terracota);color:#fff;display:grid;place-items:center}
+.ch-mic svg{width:20px;height:20px}
+@media (prefers-reduced-motion:no-preference){
+  .ch-voz i{animation:onda 1.1s ease-in-out infinite}
+  .ch-voz i:nth-child(odd){animation-delay:.25s}
+}
+@keyframes onda{50%{transform:scaleY(.45)}}

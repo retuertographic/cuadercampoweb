@@ -63,6 +63,9 @@ _P = {
     'estrella': '<path d="m12 3.5 2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.8l6-.8z"/>',
     'descarga': '<path d="M12 4v11"/><path d="m7 10.5 5 5 5-5"/><path d="M4.5 19.5h15"/>',
     'cuaderno': '<path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/><path d="M12 7v14"/>',
+    'microfono': '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21M8.5 21h7"/>',
+    'chat': '<path d="M4 5.5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/>',
+    'chispa': '<path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><path d="m12 8 1.5 2.5L16 12l-2.5 1.5L12 16l-1.5-2.5L8 12l2.5-1.5z"/>',
     'firma': '<path d="M3 17c3 0 4-8 6-8s0 8 2 8 3-4 4.5-4 1 3 2.5 3h3"/><path d="M3 21h18"/>',
 }
 
@@ -170,12 +173,16 @@ def ld_migas(url, cuerpo):
 
 def ld_app():
     ofertas = []
-    for clave, nombre, mes, _anual, _para, _inc in PLANES:
+    for clave, nombre, _para, mensual, anual, _inc in PLANES:
         if clave == 'cooperativa':
             continue
-        ofertas.append({'@type': 'Offer', 'name': 'Plan ' + nombre,
-                        'price': mes.replace(' €', '').replace(',', '.'), 'priceCurrency': 'EUR',
-                        'description': 'Precio mensual sin IVA', 'url': BASE + 'planes.html'})
+        for periodo, (precio, _suf, _txt) in (('mensual', mensual), ('anual', anual)):
+            if clave == 'huerta' and periodo == 'anual':
+                continue
+            ofertas.append({'@type': 'Offer', 'name': '%s (%s)' % (nombre, periodo),
+                            'price': precio.replace(' €', '').replace(',', '.'), 'priceCurrency': 'EUR',
+                            'description': 'Precio por mes con IGIC incluido, facturación %s' % periodo,
+                            'url': BASE + 'planes.html'})
     return {
         '@type': 'SoftwareApplication', '@id': BASE + '#app', 'name': 'CuaderCampo',
         'applicationCategory': 'BusinessApplication', 'applicationSubCategory': 'Cuaderno de campo agrícola',
@@ -338,14 +345,30 @@ def ejemplos(lista):
     return '<div class="grid historias">' + ''.join(out) + '</div>'
 
 
+def nombre_plan(nombre):
+    """CuaderHuerta → «Cuader» en DM Sans 800 + «Huerta» manuscrito, como el logotipo."""
+    return '<span class="pn"><span class="pn-c">Cuader</span><span class="pn-s">%s</span></span>' % nombre[len('Cuader'):]
+
+
+def selector_periodo():
+    """Interruptor mensual/anual; site.js lo activa y cambia los precios (sin JS queda oculto y se ve el mensual)."""
+    return ('<div class="periodo" role="group" aria-label="Periodo de facturación" hidden>'
+            '<button type="button" data-periodo="mensual" aria-pressed="true">Mensual</button>'
+            '<button type="button" data-periodo="anual" aria-pressed="false">Anual <span class="ahorro">2 meses gratis</span></button>'
+            '</div>')
+
+
 def tarjetas_planes(compacto=False):
     out = []
-    for clave, nombre, mes, anual, para, incluye in PLANES:
+    for clave, nombre, para, mensual, anual, incluye in PLANES:
         top = clave == PLAN_DESTACADO
         cls = ' plan-top' if top else ''
         reco = '<span class="plan-reco">El más elegido</span>' if top else ''
-        sufijo = '<span>/mes</span>' if '€' in mes and mes != '0 €' else ''
-        lista = incluye[:4] if compacto else incluye
+        (pm, sm, tm), (pa, sa, ta) = mensual, anual
+        cambia = ' data-mensual="%s" data-anual="%s"'
+        precio = '<b%s>%s</b>' % (cambia % (e(pm), e(pa)), pm)
+        sufijo = '<span>%s</span>' % sm if sm else ''
+        lista = incluye[:5] if compacto else incluye
         items = ''.join('<li>%s<span>%s</span></li>' % (ico('check'), x) for x in lista)
         if clave == 'cooperativa':
             boton = btn('para-cooperativas.html#alta', 'Solicitar propuesta', 'btn-ghost', 'edificio')
@@ -354,14 +377,16 @@ def tarjetas_planes(compacto=False):
         else:
             boton = btn_crear('Probar %d días gratis' % PRUEBA_DIAS, 'btn-primary' if top else 'btn-ghost')
         out.append(f'''<div class="plan{cls}">{reco}
-  <h3>{nombre}</h3>
+  <h3>{nombre_plan(nombre)}</h3>
   <p class="plan-para">{para}</p>
-  <p class="plan-precio"><b>{mes}</b>{sufijo}</p>
-  <p class="plan-total">{anual}</p>
+  <p class="plan-precio">{precio}{sufijo}</p>
+  <p class="plan-total"{cambia % (e(tm), e(ta))}>{tm}</p>
   <ul class="plan-lista">{items}</ul>
   {boton}
 </div>''')
-    return '<div class="grid g4 planes">' + ''.join(out) + '</div>'
+    return ('<div class="planes-zona">%s<div class="grid g4 planes">%s</div>'
+            '<p class="note-inline nota-precios">Precios finales con IGIC incluido. Con la facturación anual pagas 10 meses y disfrutas 12.</p></div>'
+            % (selector_periodo(), ''.join(out)))
 
 
 def relacionados(slugs):
@@ -440,6 +465,35 @@ def maqueta_validacion():
 </div>'''
 
 
+def maqueta_asistente():
+    return f'''<div class="mock-chat" role="img" aria-label="Asistente de IA de CuaderCampo: un tratamiento dictado por voz convertido en registro listo para guardar">
+  <div class="ch-cab"><span class="ch-ico">{ico('chispa')}</span><div><b>Asistente CuaderCampo</b><small>Voz y chat · Finca Los Olivos</small></div></div>
+  <div class="ch-msg yo"><span class="ch-voz">{ico('microfono')}<i></i><i></i><i></i><i></i><i></i><i></i></span>«He tratado el Olivar 1 con cobre, dos litros y medio por hectárea. Lo ha echado Juan.»</div>
+  <div class="ch-msg ia">Te he preparado la aplicación. Revísala antes de guardarla:
+    <dl class="ch-ficha"><dt>Plantación</dt><dd>Olivar 1 · 4,2 ha</dd><dt>Producto</dt><dd>Cobre (oxicloruro)</dd><dt>Dosis</dt><dd>2,5 L/ha · 10,5 L</dd><dt>Aplicador</dt><dd>J. Pérez · carnet vigente</dd></dl>
+    <span class="ch-ok">{ico('check')}Validaciones correctas</span>
+  </div>
+  <div class="ch-msg yo">¿Cuándo puedo cosechar la Viña Alta?</div>
+  <div class="ch-msg ia">A partir del <b>14 de junio</b>: el último tratamiento tiene 21 días de plazo de seguridad.</div>
+  <div class="ch-entrada"><span>Escribe o pulsa el micrófono…</span><span class="ch-mic">{ico('microfono')}</span></div>
+</div>'''
+
+
+def bloque_asistente(clase=' class="alt"'):
+    f = next(x for x in FUNCIONES if x[0] == 'asistente')
+    lista = ''.join('<li>%s<span>%s</span></li>' % (ico('check'), d) for d in f[6])
+    return f'''<section{clase}><div class="wrap"><div class="grid g2 destacado">
+  <div>
+    <span class="nuevo">{ico('chispa')}Nuevo · Asistente de IA</span>
+    <h2>Díctalo en voz alta. <span class="acento">CuaderCampo lo anota</span></h2>
+    <p class="entradilla">{f[5]}</p>
+    <ul class="checks">{lista}</ul>
+    <div class="btn-par">{btn_crear('Probarlo gratis')}{btn('funciones.html#asistente', 'Más sobre el asistente', 'btn-ghost', 'flecha')}</div>
+  </div>
+  <div class="vis-centro">{maqueta_asistente()}</div>
+</div></div></section>'''
+
+
 # ---------------------------------------------------------------- Páginas
 def p_index():
     baldosas = ''.join(baldosa(f) for f in FUNCIONES[:8])
@@ -451,7 +505,7 @@ def p_index():
   <div class="hero-txt">
     <span class="eyebrow-dark">Cuaderno de campo digital · preparado para el SIEX</span>
     <h1>Tu cuaderno de campo, <span class="acento">siempre al día</span></h1>
-    <p class="lead">Anota tratamientos, abonados, riegos y cosechas desde el móvil, en el mismo tajo. CuaderCampo comprueba dosis y plazos por ti, descuenta el inventario y genera el cuaderno oficial. Y si quieres, lo compartes con tu cooperativa.</p>
+    <p class="lead">Anota tratamientos, abonados, riegos y cosechas desde el móvil, a mano o por voz, en el mismo tajo. CuaderCampo comprueba dosis y plazos por ti, descuenta el inventario y genera el cuaderno oficial. Y si quieres, lo compartes con tu cooperativa.</p>
     <div class="actions">
       {btn_crear()}
       {btn('como-funciona.html', 'Ver cómo funciona', 'btn-ghost', 'flecha')}
@@ -461,7 +515,7 @@ def p_index():
   <div class="hero-vis">{maqueta_movil()}</div>
 </div>
 <div class="wrap"><div class="hero-stats">
-  <div><b>12</b><span>módulos para toda la campaña</span></div>
+  <div><b>13</b><span>módulos, con asistente de IA</span></div>
   <div><b>1 min</b><span>para anotar un tratamiento</span></div>
   <div><b>0</b><span>hojas que pasar a limpio</span></div>
   <div><b>100%</b><span>con códigos oficiales SIEX</span></div>
@@ -479,7 +533,9 @@ def p_index():
   <div class="pie-seccion">{btn('funciones.html', 'Ver todas las funciones', 'btn-ghost', 'flecha')}</div>
 </div></section>
 
-<section><div class="wrap"><div class="grid g2 destacado">
+{bloque_asistente('')}
+
+<section class="alt"><div class="wrap"><div class="grid g2 destacado invertido">
   <div>
     <span class="eyebrow-dark">Tratamientos fitosanitarios</span>
     <h2>Te avisa antes de equivocarte, no después</h2>
@@ -527,7 +583,7 @@ def p_index():
 </div></section>
 
 <section><div class="wrap">
-  {cabeza('Planes', 'Gratis para empezar. Claro cuando creces', 'Sin permanencia y con {d} días de prueba del plan Finca. Precios sin IVA.'.format(d=PRUEBA_DIAS))}
+  {cabeza('Planes', 'Gratis para empezar. Claro cuando creces', 'Sin permanencia y con {d} días de prueba de CuaderFinca. Paga al año y llévate dos meses gratis.'.format(d=PRUEBA_DIAS))}
   {tarjetas_planes(compacto=True)}
   <div class="pie-seccion"><p class="note-inline">¿Quieres comparar todo lo que incluye cada plan? <a href="planes.html">Ver planes en detalle</a></p></div>
 </div></section>
@@ -550,10 +606,12 @@ def p_funciones():
     bloques = []
     for i, (fid, icono, tono, nombre, resumen, texto, detalles) in enumerate(FUNCIONES):
         lista = ''.join('<li>%s<span>%s</span></li>' % (ico('check'), d) for d in detalles)
-        vis = {'recintos': maqueta_mapa(), 'tratamientos': maqueta_validacion()}.get(fid)
+        vis = {'recintos': maqueta_mapa(), 'tratamientos': maqueta_validacion(), 'asistente': maqueta_asistente()}.get(fid)
         if not vis:
             vis = f'<div class="ficha-func" style="--tono:{TONOS[tono]}"><span class="ff-ico">{ico(icono)}</span><b>{nombre}</b><span>{resumen}</span></div>'
         alt = ' class="alt"' if i % 2 else ''
+        if fid == 'asistente':
+            nombre = nombre + ' <span class="nuevo nuevo-mini">Nuevo</span>'
         orden = ' invertido' if i % 2 else ''
         bloques.append(f'''<section{alt} id="{fid}"><div class="wrap"><div class="grid g2 destacado{orden}">
   <div>
@@ -564,15 +622,15 @@ def p_funciones():
   <div class="vis-centro">{vis}</div>
 </div></div></section>''')
     cuerpo = page_head('Todo lo que necesita tu cuaderno de campo',
-                       'Doce módulos que hablan entre sí: lo que aplicas sale del inventario, lo que cosechas respeta los plazos y todo acaba en el cuaderno oficial.',
+                       'Trece módulos, con asistente de IA por voz y chat, que hablan entre sí: lo que aplicas sale del inventario, lo que cosechas respeta los plazos y todo acaba en el cuaderno oficial.',
                        [('', 'Funciones')], 'Funciones', btn_crear()) + f'''
 <section class="tight"><div class="wrap"><nav class="chips-nav" aria-label="Módulos">{chips}</nav></div></section>
 {''.join(bloques)}
-{panel('Pruébalo con tu propia finca', 'El plan Huerta es gratuito para una finca de hasta 5 hectáreas, y el plan Finca tiene {d} días de prueba.'.format(d=PRUEBA_DIAS), btn_crear() + btn('planes.html', 'Ver planes', 'btn-line', 'etiqueta'))}
+{panel('Pruébalo con tu propia finca', 'El plan CuaderHuerta es gratuito para una finca de hasta 5 hectáreas, y el plan CuaderFinca tiene {d} días de prueba.'.format(d=PRUEBA_DIAS), btn_crear() + btn('planes.html', 'Ver planes', 'btn-line', 'etiqueta'))}
 {relacionados(['cuaderno-digital-siex', 'como-funciona', 'planes'])}
 '''
     return pagina('funciones', 'Funciones — Recintos SIGPAC, tratamientos, fertilización, riego e inventario | CuaderCampo',
-                  'Recintos SIGPAC, plantaciones, tratamientos con validaciones, fertilización N-P-K, riego, cosechas, inventario por lotes, aplicadores, asesor, cooperativas y cuaderno oficial SIEX.',
+                  'Recintos SIGPAC, plantaciones, tratamientos con validaciones, asistente de IA por voz y chat, fertilización N-P-K, riego, cosechas, inventario por lotes, aplicadores, asesor, cooperativas y cuaderno oficial SIEX.',
                   cuerpo, 'funciones', ld=[ld_app()])
 
 
@@ -644,7 +702,7 @@ def p_solucion(s):
   {faq(s['faq'])}
 </div></section>
 
-{panel(s['cta'], 'Gratis para empezar, sin permanencia y con {d} días de prueba del plan Finca.'.format(d=PRUEBA_DIAS), cta + btn('planes.html', 'Ver planes', 'btn-line', 'etiqueta'))}
+{panel(s['cta'], 'Gratis para empezar, sin permanencia y con {d} días de prueba del plan CuaderFinca.'.format(d=PRUEBA_DIAS), cta + btn('planes.html', 'Ver planes', 'btn-line', 'etiqueta'))}
 
 <section><div class="wrap">
   {cabeza('Para quién', 'Otros perfiles')}
@@ -708,7 +766,7 @@ def p_siex():
   {faq(faq_siex)}
 </div></section>
 
-{panel('Empieza tu cuaderno digital hoy', 'Cuanto antes empieces, menos tendrás que recuperar. El plan Huerta es gratuito.', btn_crear() + btn('funciones.html#siex', 'Ver el módulo SIEX', 'btn-line', 'sello'))}
+{panel('Empieza tu cuaderno digital hoy', 'Cuanto antes empieces, menos tendrás que recuperar. El plan CuaderHuerta es gratuito.', btn_crear() + btn('funciones.html#siex', 'Ver el módulo SIEX', 'btn-line', 'sello'))}
 {relacionados(['funciones', 'como-funciona', 'preguntas-frecuentes'])}
 '''
     return pagina('cuaderno-digital-siex', 'Cuaderno digital SIEX: qué es y cómo prepararte | CuaderCampo',
@@ -780,7 +838,9 @@ def p_como():
   </div>
 </div></div></section>
 
-<section><div class="wrap">
+{bloque_asistente('')}
+
+<section class="alt"><div class="wrap">
   {cabeza('Ayuda dentro de la app', 'Nunca te quedas a medias')}
   <div class="grid g4">
     <div class="card"><span class="ico">{ico('pregunta')}</span><h3>Ayuda en cada apartado</h3><p>¿Qué es un recinto? ¿Y una huerta? Cada pantalla te lo explica la primera vez.</p></div>
@@ -790,7 +850,7 @@ def p_como():
   </div>
 </div></section>
 
-<section class="alt"><div class="wrap">
+<section><div class="wrap">
   {cabeza('Preguntas frecuentes', 'Dudas al empezar')}
   {faq(faq_como)}
 </div></section>
@@ -803,11 +863,14 @@ def p_como():
 
 def p_planes():
     filas = [
+        ('Precio mensual', '0 €', '12 €/mes', '29 €/mes', 'Desde 1,50 €/finca'),
+        ('Precio con pago anual', '0 €', '9,90 €/mes', '24 €/mes', 'Desde 1,25 €/finca'),
         ('Fincas', '1', 'Hasta 3', 'Ilimitadas', 'Las de tus socios'),
         ('Superficie', 'Hasta 5 ha', 'Hasta 60 ha', 'Ilimitada', 'Ilimitada'),
         ('Recintos SIGPAC, mapa y plantaciones', '✓', '✓', '✓', '✓'),
         ('Tratamientos con vademécum y validaciones', '✓', '✓', '✓', '✓'),
         ('Labores, riegos y cosechas', '✓', '✓', '✓', '✓'),
+        ('Asistente de IA por voz y chat', '30 al mes', '✓', '✓', '✓'),
         ('Fertilización y plan de abonado', '—', '✓', '✓', '✓'),
         ('Inventario por lotes y facturas', '—', '✓', '✓', '✓'),
         ('Aplicadores, carnets y maquinaria ITEAF', '—', '✓', '✓', '✓'),
@@ -822,20 +885,22 @@ def p_planes():
     cab = ''.join('<th scope="col">%s</th>' % p[1] for p in PLANES)
     cuerpo_t = ''.join('<tr><th scope="row">%s</th>%s</tr>' % (f[0], ''.join('<td data-col="%s">%s</td>' % (PLANES[i][1], v) for i, v in enumerate(f[1:]))) for f in filas)
     faq_planes = [
-        ('¿Necesito tarjeta para empezar?', 'No. El plan Huerta es gratuito y la prueba de %d días del plan Finca tampoco pide tarjeta.' % PRUEBA_DIAS),
-        ('¿Los precios llevan IVA?', 'No. Los precios se muestran sin IVA; el impuesto que corresponda se añade en la factura (en Canarias, IGIC).'),
+        ('¿Necesito tarjeta para empezar?', 'No. El plan CuaderHuerta es gratuito y la prueba de %d días del plan CuaderFinca tampoco pide tarjeta.' % PRUEBA_DIAS),
+        ('¿Los precios llevan impuestos?', 'Sí. Todos los precios que ves son finales, con el IGIC incluido. Lo que ves es lo que pagas.'),
+        ('¿Cuánto ahorro con el pago anual?', 'Dos meses: pagas 10 y disfrutas 12. CuaderFinca queda en 9,90 €/mes (118,80 € al año) y CuaderExplotación en 24 €/mes (288 € al año).'),
+        ('¿El asistente de IA cuesta aparte?', 'No. Va incluido en CuaderFinca, CuaderExplotación y CuaderCooperativa, y CuaderHuerta trae 30 anotaciones por voz o chat al mes. También puedes usar tu propia clave de IA (BYOK) sin coste adicional.'),
         ('¿Hay permanencia?', 'No. Pagas mes a mes o un año por adelantado con dos meses gratis, y puedes cambiar de plan o darte de baja cuando quieras.'),
-        ('¿Qué pasa con mis datos si dejo de pagar?', 'Tu cuenta pasa al plan Huerta. No se borra nada: puedes seguir consultando tus registros y descargar tus cuadernos.'),
-        ('¿Y si soy socio de una cooperativa con plan Cooperativa?', 'Tu cooperativa puede incluir tus fincas en su plan. Pregúntales: muchas lo ofrecen sin coste para el socio.'),
+        ('¿Qué pasa con mis datos si dejo de pagar?', 'Tu cuenta pasa al plan CuaderHuerta. No se borra nada: puedes seguir consultando tus registros y descargar tus cuadernos.'),
+        ('¿Y si soy socio de una cooperativa con plan CuaderCooperativa?', 'Tu cooperativa puede incluir tus fincas en su plan. Pregúntales: muchas lo ofrecen sin coste para el socio.'),
         ('¿Cómo pago?', 'Con tarjeta o domiciliación bancaria desde tu cuenta. Las cooperativas pueden pagar por transferencia contra factura.'),
     ]
     cuerpo = page_head('Gratis para empezar. Claro cuando creces',
-                       'Sin permanencia y con %d días de prueba del plan Finca. Elige según tus fincas y tu equipo; puedes cambiar cuando quieras.' % PRUEBA_DIAS,
+                       'Sin permanencia y con %d días de prueba del plan CuaderFinca. Elige según tus fincas y tu equipo; puedes cambiar cuando quieras.' % PRUEBA_DIAS,
                        [('', 'Planes')], 'Planes y precios') + f'''
 <section><div class="wrap">
   <h2 class="sr-only">Elige tu plan</h2>
   {tarjetas_planes()}
-  <p class="note-inline" style="margin-top:18px">Precios sin IVA. Pago mensual o anual (dos meses gratis). El acceso de asesores invitados a una finca es gratuito.</p>
+  <p class="note-inline" style="margin-top:8px">El acceso de asesores invitados a una finca es gratuito.</p>
 </div></section>
 
 <section class="alt"><div class="wrap">
@@ -850,7 +915,7 @@ def p_planes():
 {panel('¿Eres una cooperativa o una empresa de asesoramiento?', 'Te preparamos una propuesta a medida, con alta y formación para tus técnicos y tus socios.', btn('para-cooperativas.html#alta', 'Solicitar propuesta', 'btn-primary', 'edificio') + btn_crear('Crear cuenta gratis', 'btn-line'))}
 '''
     return pagina('planes', 'Planes y precios — Cuaderno de campo gratis para empezar | CuaderCampo',
-                  'Plan Huerta gratis para una finca de hasta 5 ha, plan Finca por 12 €/mes, plan Explotación por 29 €/mes y plan Cooperativa a medida. Sin permanencia.',
+                  'CuaderHuerta gratis para una finca de hasta 5 ha, CuaderFinca desde 9,90 €/mes, CuaderExplotación desde 24 €/mes y CuaderCooperativa a medida. IGIC incluido, sin permanencia.',
                   cuerpo, 'planes', ld=[ld_app(), ld_faq(faq_planes)])
 
 
@@ -1007,8 +1072,8 @@ def p_404():
 # ---------------------------------------------------------------- llms.txt
 def llms_txt():
     u = lambda slug: '%s%s.html' % (BASE, slug)
-    planes = '\n'.join('  - %s: %s%s (%s). %s' % (n, m, '/mes' if '€' in m and m != '0 €' else '', a, p)
-                       for _, n, m, a, p, _ in PLANES)
+    planes = '\n'.join('  - %s: mensual %s%s (%s); anual %s%s (%s). %s' % (n, m[0], m[1], m[2], a[0], a[1], a[2], p)
+                       for _, n, p, m, a, _ in PLANES)
     pasos_t = '\n'.join('%d. %s: %s' % (i, t, d) for i, (t, d) in enumerate(PASOS, 1))
     funcs = '\n'.join('- **%s**: %s' % (f[3], f[4]) for f in FUNCIONES)
     sols = '\n'.join('- [%s](%s): %s' % (s['nombre'], u(s['slug']), s['resumen']) for s in SOLUCIONES)
@@ -1035,7 +1100,7 @@ Web: {BASE} · Aplicación: {APP['entrar']} · Contacto: {EMPRESA['email']}
 
 {pasos_t}
 
-## Planes (precios sin IVA, sin permanencia, {PRUEBA_DIAS} días de prueba del plan Finca)
+## Planes (precios con IGIC incluido, sin permanencia, pago anual con dos meses gratis, {PRUEBA_DIAS} días de prueba de CuaderFinca)
 
 {planes}
 
