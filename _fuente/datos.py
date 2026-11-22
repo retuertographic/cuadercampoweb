@@ -345,6 +345,6 @@ HISTORIA = [
 EQUIPO = [
     ('Producto y diseño', 'Diseñamos cada pantalla para usarse de pie, al sol y con guantes.'),
     ('Desarrollo', 'Una aplicación web rápida, segura y que se instala en el móvil como una app.'),
-    ('Asesoría agronómica', 'Técnicos con ROPO y experiencia en cooperativas revisan cada flujo y cada validación.'),
+    ('Revisión en el campo', 'Técnicos agrícolas y agricultores revisan la aplicación y nos dicen qué mejorar.'),
     ('Atención', 'Te contestamos personas, por correo, y te ayudamos a dar de alta tu primera finca.'),
 ]
