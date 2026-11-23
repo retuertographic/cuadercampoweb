@@ -42,12 +42,12 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 5. Anota desde el campo: Tratamientos, abonados, riegos, labores y cosechas. A mano, por voz o escribiéndole al asistente de IA, en el tajo y en un minuto.
 6. Descarga y comparte: Tu cuaderno oficial en PDF, Excel o exportación SIEX. Compártelo con tu cooperativa si quieres.
 
-## Planes (precios con impuestos incluidos, sin permanencia, pago anual con dos meses gratis, 30 días de prueba de CuaderFinca)
+## Planes (precio bajo consulta, sin permanencia, 30 días de prueba de CuaderFinca)
 
-  - CuaderHuerta: mensual 0 € (Gratis para siempre); anual 0 € (Gratis para siempre). Para empezar con una finca pequeña y dejar el papel.
-  - CuaderFinca: mensual 12 €/mes (Facturado cada mes · impuestos incluidos); anual 10 €/mes (120 € al año · ahorras 24 €). Para el agricultor profesional que quiere cumplir sin perder tiempo.
-  - CuaderExplotación: mensual 29 €/mes (Facturado cada mes · impuestos incluidos); anual 24 €/mes (288 € al año · ahorras 60 €). Para el agricultor con muchas fincas o muchas hectáreas.
-  - CuaderCooperativa: mensual A medida (Desde 1,50 € por finca gestionada y mes); anual A medida (Desde 1,25 € por finca y mes, facturado al año). Para cooperativas y SAT que gestionan las fincas de sus socios.
+  - CuaderHuerta: Para empezar con una finca pequeña y dejar el papel. Incluye: 1 finca y hasta 5 ha, Recintos SIGPAC y mapa, Plantaciones, labores, riegos y cosechas, Tratamientos con vademécum y validaciones, Asistente de IA: 30 anotaciones al mes, Cuaderno en PDF, App instalable en el móvil.
+  - CuaderFinca: Para el agricultor profesional que quiere cumplir sin perder tiempo. Incluye: Hasta 3 fincas y 60 ha, Todo lo de CuaderHuerta, Asistente de IA: 150 anotaciones al mes, Fertilización con unidades N, P y K, Inventario por lotes y facturas de compra, Aplicadores, carnets y maquinaria ITEAF, Compartir la finca con tu cooperativa gestora, Exportación oficial SIEX, PDF y Excel.
+  - CuaderExplotación: Para el agricultor con muchas fincas o muchas hectáreas. Incluye: Fincas y hectáreas ilimitadas, Todo lo de CuaderFinca, Asistente de IA: 500 anotaciones al mes, Biblioteca de documentos de la finca, Soporte prioritario por correo y teléfono.
+  - CuaderCooperativa: Para cooperativas y SAT que gestionan las fincas de sus socios. Incluye: Panel de cooperativa con todas las fincas, Técnicos y asignación de fincas, Asistente de IA: 40 anotaciones por finca y mes, compartidas, Solicitudes de gestión aceptadas por el agricultor, Instrucciones de tratamiento del técnico (ROPO), Etiqueta con el color de tu cooperativa, Tu propia clave de IA (BYOK) sin límite de anotaciones, 15 % de descuento para tus socios en CuaderFinca y CuaderExplotación, Alta y formación de tus socios.
 
 ## Preguntas frecuentes
 
@@ -55,8 +55,8 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 - **¿Es obligatorio el cuaderno de campo digital?** El cuaderno de explotación es obligatorio desde hace años para quien usa productos fitosanitarios. El Real Decreto 1054/2022 crea el Sistema de Información de Explotaciones Agrícolas (SIEX) y el cuaderno digital, cuya obligatoriedad se aplica de forma progresiva según el calendario que marcan el Ministerio y las comunidades autónomas. CuaderCampo te deja preparado tanto si ya te afecta como si no.
 - **¿Qué es el SIEX?** Es el sistema oficial en el que se integra la información de las explotaciones agrícolas: la declaración de cultivos, el cuaderno digital y los registros de tratamientos y fertilización. CuaderCampo guarda tus datos con los códigos y catálogos oficiales y exporta el cuaderno en el formato validado.
 - **¿Necesito instalar algo?** No. CuaderCampo funciona desde el navegador del móvil, la tableta o el ordenador. Si quieres, la añades a la pantalla de inicio y se abre como una app, sin pasar por ninguna tienda.
-- **¿Cuánto cuesta?** El plan CuaderHuerta es gratuito para una finca de hasta 5 hectáreas. El plan CuaderFinca cuesta 12 €/mes (10 €/mes si pagas al año) y el plan CuaderExplotación 29 €/mes (24 €/mes al año). Todos los precios llevan los impuestos incluidos. Las cooperativas tienen un plan a medida. Puedes probar el plan CuaderFinca gratis durante 30 días.
-- **¿Puedo cambiar de plan o darme de baja?** Sí, cuando quieras y desde tu cuenta. Si bajas al plan gratuito, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.
+- **¿Cuánto cuesta?** Tenemos planes para una finca pequeña, para el agricultor profesional, para explotaciones con muchas fincas y para cooperativas. El precio depende de tu caso: escríbenos y te lo enviamos sin compromiso. Puedes probar el plan CuaderFinca durante 30 días.
+- **¿Puedo cambiar de plan o darme de baja?** Sí, cuando quieras y desde tu cuenta. Si bajas al plan CuaderHuerta, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.
 - **¿De quién son mis datos?** Tuyos. Tú decides qué cooperativa gestiona cada finca y con qué nivel de acceso, y puedes retirarlo. No vendemos ni cedemos tus datos a terceros.
 - **¿Puedo importar mis recintos SIGPAC?** Sí. Puedes importar tus recintos o dibujarlos sobre el mapa. Después los agrupas en huertas (UHC) si los trabajas de forma conjunta.
 - **¿Cómo sé qué productos puedo usar?** El vademécum de fitosanitarios incluye los usos autorizados, las dosis y los plazos de seguridad. Al registrar una aplicación, CuaderCampo te avisa si el producto no está autorizado para tu cultivo, si su registro ha caducado o si la dosis está fuera de rango.
@@ -73,7 +73,7 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 - [Cuaderno digital SIEX](https://cuadercampo.com/cuaderno-digital-siex.html)
 - [Por cultivo](https://cuadercampo.com/cultivos.html)
 - [Ejemplos de uso](https://cuadercampo.com/ejemplos.html) (escenarios ilustrativos)
-- [Planes y precios](https://cuadercampo.com/planes.html)
+- [Planes](https://cuadercampo.com/planes.html)
 - [Quiénes somos](https://cuadercampo.com/quienes-somos.html)
 - [Preguntas frecuentes](https://cuadercampo.com/preguntas-frecuentes.html)
 - [Contacto](https://cuadercampo.com/contacto.html)

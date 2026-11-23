@@ -23,7 +23,7 @@ APP = {
 PENDIENTE = 'pendiente de completar'
 
 # ---------------------------------------------------------------- Planes
-# Precios finales con impuestos incluidos. La facturación anual sale más barata (dos meses gratis).
+# Los precios NO se publican en la web (precio bajo consulta). Los campos mensual/anual se conservan sin usar.
 # Asistente de IA: anotaciones al mes por plan (una anotación = un dictado o una conversación que acaba en registro).
 # (clave, nombre, para quién,
 #  mensual: (precio, sufijo, texto bajo el precio),
@@ -169,7 +169,7 @@ SOLUCIONES = [
             ('Anota por voz', 'Pulsa el micrófono, di lo que has hecho y el asistente de IA rellena el registro. Tú solo lo revisas.'),
             ('Repite lo de siempre', 'Copia la aplicación anterior o repite el último riego con un toque.'),
             ('Tú decides quién lo ve', 'Comparte cada finca con tu cooperativa con el nivel de acceso que elijas, o con nadie.'),
-            ('Gratis para empezar', 'El plan CuaderHuerta es gratuito para una finca de hasta 5 hectáreas.'),
+            ('Empieza con tu finca', 'El plan CuaderHuerta está pensado para una finca de hasta 5 hectáreas. Pregúntanos por él.'),
         ]),
         'faq': [
             ('¿Necesito saber de informática?', 'No. Si usas WhatsApp, sabes usar CuaderCampo. Además, cada apartado tiene una ayuda corta que te explica qué es un recinto, una plantación o una aplicación.'),
@@ -198,7 +198,7 @@ SOLUCIONES = [
             ('El socio manda', 'Cada finca tiene una única gestora y el agricultor puede cambiarla. La confianza se gana, no se impone.'),
         ]),
         'faq': [
-            ('¿Cuánto cuesta para una cooperativa?', 'El plan CuaderCooperativa es a medida y parte de 1,50 € por finca gestionada y mes (1,25 € con facturación anual), impuestos incluidos. Incluye el alta, la formación de los técnicos, una sesión para socios, 40 anotaciones de IA por finca y mes y un 15 % de descuento para tus socios que quieran su propio plan. No pagas por las fincas de socios que ya tienen un plan de pago.'),
+            ('¿Cuánto cuesta para una cooperativa?', 'El plan CuaderCooperativa es a medida y se calcula por finca gestionada. Incluye el alta, la formación de los técnicos, una sesión para socios, anotaciones de IA para todas las fincas y un 15 % de descuento para tus socios que quieran su propio plan. No pagas por las fincas de socios que ya tienen un plan de pago. Pídenos tu propuesta.'),
             ('¿Puede la cooperativa ver todas las fincas de un socio?', 'Solo las que el socio comparte, y con el nivel de acceso que él elige. Una finca tiene una única cooperativa gestora.'),
             ('¿Mis técnicos necesitan otra herramienta?', 'No. El panel de cooperativa, las asignaciones, las instrucciones y las validaciones están dentro de CuaderCampo.'),
         ],
@@ -302,8 +302,8 @@ FAQ_GENERAL = [
     ('¿Es obligatorio el cuaderno de campo digital?', 'El cuaderno de explotación es obligatorio desde hace años para quien usa productos fitosanitarios. El Real Decreto 1054/2022 crea el Sistema de Información de Explotaciones Agrícolas (SIEX) y el cuaderno digital, cuya obligatoriedad se aplica de forma progresiva según el calendario que marcan el Ministerio y las comunidades autónomas. CuaderCampo te deja preparado tanto si ya te afecta como si no.'),
     ('¿Qué es el SIEX?', 'Es el sistema oficial en el que se integra la información de las explotaciones agrícolas: la declaración de cultivos, el cuaderno digital y los registros de tratamientos y fertilización. CuaderCampo guarda tus datos con los códigos y catálogos oficiales y exporta el cuaderno en el formato validado.'),
     ('¿Necesito instalar algo?', 'No. CuaderCampo funciona desde el navegador del móvil, la tableta o el ordenador. Si quieres, la añades a la pantalla de inicio y se abre como una app, sin pasar por ninguna tienda.'),
-    ('¿Cuánto cuesta?', 'El plan CuaderHuerta es gratuito para una finca de hasta 5 hectáreas. El plan CuaderFinca cuesta 12 €/mes (10 €/mes si pagas al año) y el plan CuaderExplotación 29 €/mes (24 €/mes al año). Todos los precios llevan los impuestos incluidos. Las cooperativas tienen un plan a medida. Puedes probar el plan CuaderFinca gratis durante 30 días.'),
-    ('¿Puedo cambiar de plan o darme de baja?', 'Sí, cuando quieras y desde tu cuenta. Si bajas al plan gratuito, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.'),
+    ('¿Cuánto cuesta?', 'Tenemos planes para una finca pequeña, para el agricultor profesional, para explotaciones con muchas fincas y para cooperativas. El precio depende de tu caso: escríbenos y te lo enviamos sin compromiso. Puedes probar el plan CuaderFinca durante 30 días.'),
+    ('¿Puedo cambiar de plan o darme de baja?', 'Sí, cuando quieras y desde tu cuenta. Si bajas al plan CuaderHuerta, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.'),
     ('¿De quién son mis datos?', 'Tuyos. Tú decides qué cooperativa gestiona cada finca y con qué nivel de acceso, y puedes retirarlo. No vendemos ni cedemos tus datos a terceros.'),
     ('¿Puedo importar mis recintos SIGPAC?', 'Sí. Puedes importar tus recintos o dibujarlos sobre el mapa. Después los agrupas en huertas (UHC) si los trabajas de forma conjunta.'),
     ('¿Cómo sé qué productos puedo usar?', 'El vademécum de fitosanitarios incluye los usos autorizados, las dosis y los plazos de seguridad. Al registrar una aplicación, CuaderCampo te avisa si el producto no está autorizado para tu cultivo, si su registro ha caducado o si la dosis está fuera de rango.'),
