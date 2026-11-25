@@ -35,7 +35,7 @@ PLANES = [
     ('huerta', 'CuaderHuerta', 'Para empezar con una finca pequeña y dejar el papel.',
      ('0 €', '', 'Gratis para siempre'),
      ('0 €', '', 'Gratis para siempre'),
-     ['1 finca y hasta 5 ha', 'Recintos SIGPAC y mapa', 'Plantaciones, labores, riegos y cosechas',
+     ['1 finca', 'Recintos SIGPAC y mapa', 'Plantaciones, labores, riegos y cosechas',
       'Tratamientos con vademécum y validaciones', 'Asistente de IA: 30 anotaciones al mes', 'Cuaderno en PDF',
       'App instalable en el móvil']),
     ('finca', 'CuaderFinca', 'Para el agricultor profesional que quiere cumplir sin perder tiempo.',
@@ -171,7 +171,7 @@ SOLUCIONES = [
             ('Anota por voz', 'Pulsa el micrófono, di lo que has hecho y el asistente de IA rellena el registro. Tú solo lo revisas.'),
             ('Repite lo de siempre', 'Copia la aplicación anterior o repite el último riego con un toque.'),
             ('Tú decides quién lo ve', 'Comparte cada finca con tu cooperativa con el nivel de acceso que elijas, o con nadie.'),
-            ('Empieza con tu finca', 'El plan CuaderHuerta está pensado para una finca de hasta 5 hectáreas. Pregúntanos por él.'),
+            ('Empieza con tu finca', 'El plan CuaderHuerta está pensado para empezar con una sola finca. Pregúntanos por él.'),
         ]),
         'faq': [
             ('¿Necesito saber de informática?', 'No. Si usas WhatsApp, sabes usar CuaderCampo. Además, cada apartado tiene una ayuda corta que te explica qué es un recinto, una plantación o una aplicación.'),

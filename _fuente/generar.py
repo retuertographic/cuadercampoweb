@@ -858,7 +858,7 @@ def p_como():
 def p_planes():
     filas = [
         ('Fincas', '1', 'Hasta 3', 'Ilimitadas', 'Las de tus socios'),
-        ('Superficie', 'Hasta 5 ha', 'Hasta 60 ha', 'Ilimitada', 'Ilimitada'),
+        ('Superficie', 'Una finca', 'Hasta 60 ha', 'Ilimitada', 'Ilimitada'),
         ('Recintos SIGPAC, mapa y plantaciones', '✓', '✓', '✓', '✓'),
         ('Tratamientos con vademécum y validaciones', '✓', '✓', '✓', '✓'),
         ('Labores, riegos y cosechas', '✓', '✓', '✓', '✓'),
