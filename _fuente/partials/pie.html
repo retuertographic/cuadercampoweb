@@ -7,9 +7,9 @@
         <a class="btn btn-primary" href="{{ app_crear }}" rel="noopener">{{ ico:mas }}Crear cuenta gratis</a>
         <a class="btn btn-line" href="{{ app_entrar }}" rel="noopener">{{ ico:llave }}Entrar</a>
       </div>
-      <form class="news" id="newsForm" data-to="{{ email }}" action="mailto:{{ email }}" method="post" enctype="text/plain">
+      <form class="news" id="newsForm" data-wa="{{ whatsapp }}" action="https://wa.me/{{ whatsapp }}" method="get">
         <h2 class="foot-h">Novedades</h2>
-        <p>Cambios normativos, novedades del SIEX y nuevas funciones. Un correo al mes, como mucho.</p>
+        <p>Cambios normativos, novedades del SIEX y nuevas funciones. Déjanos tu correo y confirma el alta por WhatsApp.</p>
         <div class="news-row">
           <label class="sr-only" for="newsEmail">Tu correo</label>
           <input id="newsEmail" name="email" type="email" required placeholder="Tu correo">

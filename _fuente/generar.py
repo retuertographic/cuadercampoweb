@@ -63,6 +63,7 @@ _P = {
     'estrella': '<path d="m12 3.5 2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.8l6-.8z"/>',
     'descarga': '<path d="M12 4v11"/><path d="m7 10.5 5 5 5-5"/><path d="M4.5 19.5h15"/>',
     'cuaderno': '<path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/><path d="M12 7v14"/>',
+    'whatsapp': '<path d="M4.5 19.5 5.6 16A8 8 0 1 1 8.4 18.7z"/><path d="M9.2 8.6c.3 2.9 2.3 5 5.2 5.6l1.2-1.3-1.8-1-.8.7c-1-.5-1.8-1.3-2.3-2.3l.7-.8-1-1.8z"/>',
     'microfono': '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21M8.5 21h7"/>',
     'chat': '<path d="M4 5.5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/>',
     'chispa': '<path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><path d="m12 8 1.5 2.5L16 12l-2.5 1.5L12 16l-1.5-2.5L8 12l2.5-1.5z"/>',
@@ -121,18 +122,18 @@ def parcial(nombre, **ctx):
     return html
 
 
-COMUN = dict(email=EMPRESA['email'], app_entrar=APP['entrar'], app_crear=APP['crear'], prueba=PRUEBA_DIAS)
+COMUN = dict(email=EMPRESA['email'], whatsapp=EMPRESA['whatsapp'], app_entrar=APP['entrar'], app_crear=APP['crear'], prueba=PRUEBA_DIAS)
 
 # ---------------------------------------------------------------- Menú
 NAV = [
     ('index', 'Inicio'),
     ('funciones', 'Funciones'),
     ('para-quien', 'Para quién'),
-    ('cuaderno-digital-siex', 'Cuaderno SIEX'),
+    ('cuaderno-digital-siex', 'SIEX'),
     ('como-funciona', 'Cómo funciona'),
     ('planes', 'Planes'),
     ('quienes-somos', 'Quiénes somos'),
-    ('preguntas-frecuentes', 'Preguntas frecuentes'),
+    ('preguntas-frecuentes', 'FAQ'),
     ('contacto', 'Contacto'),
 ]
 
@@ -244,7 +245,7 @@ def pagina(slug, titulo, descripcion, cuerpo, activo=None, form=True, ld=None, f
 
 def form_contacto(titulo='¿Hablamos de tu finca?',
                   texto='Cuéntanos qué cultivas, cuántas hectáreas llevas o qué necesita tu cooperativa. Te respondemos personas, no un robot, y te ayudamos a dar de alta tu primera finca.',
-                  asunto='Consulta desde la web', boton='Enviar mensaje', ancla='escribenos', campos='contacto'):
+                  asunto='Consulta desde la web', boton='Enviar por WhatsApp', ancla='escribenos', campos='contacto'):
     if campos == 'contacto':
         opc = ''.join('<option>%s</option>' % o for o in
                       ['Agricultor o agricultora', 'Cooperativa o SAT', 'Asesor o técnico', 'Explotación con empleados'])
@@ -270,10 +271,14 @@ def page_head(titulo, texto, migas, antetitulo=None, acciones=''):
 </div>{surcos()}</div>'''
 
 
-def surcos():
-    """Ondas de cultivo en el borde inferior de las cabeceras."""
-    return ('<svg class="surcos" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">'
-            '<path d="M0 34c120-18 240-18 360 0s240 18 360 0 240-18 360 0 240 18 360 0v26H0z" fill="#F3F1E7"/></svg>')
+def surcos(alto=False):
+    """Borde inferior en forma de lomas de cultivo, en dos capas: una loma de Brote
+    y, delante, el Crema de la sección siguiente (así el corte se lee como paisaje)."""
+    clase = 'surcos surcos-alto' if alto else 'surcos'
+    return ('<svg class="%s" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">'
+            '<path d="M0 62C180 18 380 14 600 44s420 50 600 18 200-34 240-30v88H0z" fill="#A9C48A" fill-opacity=".55"/>'
+            '<path d="M0 92c200-38 420-44 660-18s440 34 620 6c70-11 130-14 160-12v52H0z" fill="#F3F1E7"/>'
+            '</svg>') % clase
 
 
 def cabeza(ante, titulo, texto=''):
@@ -510,7 +515,6 @@ def p_index():
       {btn_crear()}
       {btn('como-funciona.html', 'Ver cómo funciona', 'btn-ghost', 'flecha')}
     </div>
-    <p class="hero-nota">{ico('regalo')}Gratis para una finca de hasta 5 ha. Sin tarjeta.</p>
   </div>
   <div class="hero-vis">{maqueta_movil()}</div>
 </div>
@@ -519,7 +523,7 @@ def p_index():
   <div><b>1 min</b><span>para anotar un tratamiento</span></div>
   <div><b>0</b><span>hojas que pasar a limpio</span></div>
   <div><b>100%</b><span>con códigos oficiales SIEX</span></div>
-</div></div>{surcos()}</div>
+</div></div>{surcos(alto=True)}</div>
 
 <section><div class="wrap">
   {cabeza('Por qué existe CuaderCampo', 'El cuaderno no sobra. Sobra el papeleo alrededor del cuaderno', 'Hacemos CuaderCampo porque el campo merece herramientas pensadas para el campo, no para la oficina.')}
@@ -669,7 +673,7 @@ def p_solucion(s):
     if s['slug'] == 'para-cooperativas':
         form_kw = dict(titulo='Solicita el alta de tu cooperativa',
                        texto='Cuéntanos cuántos socios y técnicos tenéis y qué cultivos lleváis. Te preparamos una propuesta, una demostración con datos de ejemplo y un plan de alta para tus socios.',
-                       asunto='Alta de cooperativa', boton='Enviar solicitud', ancla='alta', campos='cooperativa')
+                       asunto='Alta de cooperativa', boton='Enviar solicitud por WhatsApp', ancla='alta', campos='cooperativa')
     cuerpo = page_head(s['titulo'], s['resumen'], [('para-quien.html', 'Para quién'), ('', s['nombre'])],
                        s['antetitulo'], cta) + f'''
 <section><div class="wrap"><div class="grid g2 destacado">
@@ -977,7 +981,7 @@ def p_faq():
                       % (' class="alt"' if i % 2 else '', t, faq(l)) for i, (t, l) in enumerate(grupos))
     cuerpo = page_head('Preguntas frecuentes', 'Respuestas claras sobre CuaderCampo, el cuaderno digital SIEX, los planes y tus datos.',
                        [('', 'Preguntas frecuentes')]) + bloques + \
-        panel('¿No encuentras tu respuesta?', 'Escríbenos y te contestamos en menos de un día laborable.',
+        panel('¿No encuentras tu respuesta?', 'Escríbenos por WhatsApp o por correo y te contestamos en menos de un día laborable.',
               btn('#escribenos', 'Escríbenos', 'btn-primary', 'mail') + btn_crear('Crear cuenta gratis', 'btn-line'))
     return pagina('preguntas-frecuentes', 'Preguntas frecuentes — CuaderCampo',
                   'Qué es CuaderCampo, si es obligatorio el cuaderno digital, qué es el SIEX, cuánto cuesta y de quién son tus datos.',
@@ -1026,7 +1030,7 @@ def p_privacidad():
     mail = '<a href="mailto:%s">%s</a>' % (EMPRESA['email'], EMPRESA['email'])
     s = [
         ('Responsable', f'<p>CuaderCampo (titular y NIF: {PENDIENTE}). Contacto: {mail}.</p>'),
-        ('Qué datos tratamos en este sitio', '<p>Los que nos facilitas al escribirnos o suscribirte a las novedades: nombre, apellidos, correo electrónico, teléfono (opcional), entidad y el contenido de tu mensaje. Este sitio no tiene formularios que envíen datos a un servidor: al enviar, se abre tu programa de correo con el mensaje redactado.</p>'),
+        ('Qué datos tratamos en este sitio', '<p>Los que nos facilitas al escribirnos o suscribirte a las novedades: nombre, apellidos, correo electrónico, teléfono (opcional), entidad y el contenido de tu mensaje. Este sitio no tiene formularios que envíen datos a un servidor: al enviar, se abre WhatsApp con el mensaje redactado para que lo mandes tú al número de CuaderCampo, y ese mensaje queda sujeto también a las condiciones de WhatsApp.</p>'),
         ('Finalidad y legitimación', '<p>Responder a tu consulta, preparar una propuesta si eres una cooperativa y, si te suscribes, enviarte novedades. La base legal es tu consentimiento, que puedes retirar en cualquier momento.</p>'),
         ('Datos de la aplicación', '<p>Los datos de tus fincas, recintos, cultivos y registros se tratan en la aplicación solo para prestarte el servicio. Tú decides con qué cooperativa o asesor compartes cada finca. No vendemos ni cedemos tus datos a terceros salvo obligación legal.</p>'),
         ('Conservación', '<p>Conservamos los datos mientras sean necesarios para la finalidad indicada y durante los plazos legales aplicables al cuaderno de explotación.</p>'),

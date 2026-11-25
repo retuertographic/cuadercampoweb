@@ -1,8 +1,6 @@
 // CuaderCampo — interacción del sitio (sin dependencias).
 var T = {
-  abrir: 'Abrir menú', cerrar: 'Cerrar menú',
-  correo: 'Correo', alta: 'Quiero recibir las novedades de CuaderCampo', altaAsunto: 'Alta en novedades',
-  altaOk: 'Se abrirá tu programa de correo para confirmar la suscripción.'
+  abrir: 'Abrir menú', cerrar: 'Cerrar menú'
 };
 
 // Menú responsive
@@ -49,10 +47,13 @@ var T = {
       lista.children, function (li) { return li !== mas && li !== cta; }
     );
     // Se recogen desde el final; «Inicio» no se mueve nunca.
-    var i = items.length - 1;
+    // «Contacto» se mantiene visible: se recogen antes los demás elementos.
+    var fijo = items.filter(function (li) { var a = li.querySelector('a'); return a && a.getAttribute('href') === 'contacto.html'; })[0];
+    var mover = items.filter(function (li) { return li !== fijo; });
+    var i = mover.length - 1;
     while (wrap.scrollWidth > wrap.clientWidth + 1 && i >= 1) {
       mas.hidden = false;
-      drop.insertBefore(items[i], drop.firstChild);
+      drop.insertBefore(mover[i], drop.firstChild);
       i--;
     }
     if (!drop.children.length) { mas.hidden = true; return; }
@@ -98,28 +99,29 @@ var T = {
   revisar();
 })();
 
-// Formularios de contacto y de afiliados: el sitio es estático, así que componen
-// un correo con cada campo rellenado (etiqueta: valor).
+// Formularios y alta en novedades: el sitio es estático, así que componen un mensaje
+// con cada campo rellenado (etiqueta: valor) y lo abren en WhatsApp (data-wa = número).
+function abrirWhatsApp(numero, texto) {
+  var url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
+  var ventana = window.open(url, '_blank', 'noopener');
+  if (!ventana) window.location.href = url;
+}
+
 (function () {
-  document.querySelectorAll('form.js-correo').forEach(function (form) {
+  document.querySelectorAll('form.js-whatsapp').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var lineas = [];
-      var nombre = '';
+      var lineas = ['*' + form.dataset.asunto + '* — web cuadercampo.com', ''];
       Array.prototype.forEach.call(form.elements, function (el) {
         if (!el.name || el.type === 'checkbox' || el.type === 'submit') return;
         var valor = el.value.trim();
         if (!valor) return;
         var etiqueta = form.querySelector('label[for="' + el.id + '"]');
         lineas.push((etiqueta ? etiqueta.textContent.trim() : el.name) + ': ' + valor);
-        if (el.name === 'f-nombre') nombre = valor;
       });
-      var url = 'mailto:' + form.dataset.to +
-        '?subject=' + encodeURIComponent(form.dataset.asunto + ' — ' + (nombre || 'web')) +
-        '&body=' + encodeURIComponent(lineas.join('\n'));
       var msg = form.querySelector('.form-msg');
       if (msg) msg.classList.add('show');
-      window.location.href = url;
+      abrirWhatsApp(form.dataset.wa, lineas.join('\n'));
     });
   });
 })();
@@ -130,9 +132,8 @@ var T = {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var correo = form.elements.email.value.trim();
-    var url = 'mailto:' + form.dataset.to +
-      '?subject=' + encodeURIComponent(T.altaAsunto) +
-      '&body=' + encodeURIComponent(T.alta + '\n' + T.correo + ': ' + correo);
+    var texto = 'Hola, quiero suscribirme a la newsletter de CuaderCampo para recibir las novedades del SIEX, ' +
+      'los cambios normativos y las nuevas funciones. Mi correo es: ' + correo;
     var ok = form.querySelector('.news-ok');
     if (!ok) {
       ok = document.createElement('p');
@@ -140,9 +141,9 @@ var T = {
       ok.setAttribute('role', 'status');
       form.appendChild(ok);
     }
-    ok.textContent = T.altaOk;
+    ok.textContent = 'Se abrirá WhatsApp con tu solicitud de alta: solo tienes que pulsar enviar.';
     ok.classList.add('show');
-    window.location.href = url;
+    abrirWhatsApp(form.dataset.wa, texto);
   });
 })();
 

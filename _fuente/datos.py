@@ -9,6 +9,8 @@ EMPRESA = {
     'nombre': 'CuaderCampo',
     'base_url': 'https://cuadercampo.com/',
     'email': 'hola@cuadercampo.com',
+    # WhatsApp que recibe los formularios y las altas en novedades (formato internacional sin + ni 00)
+    'whatsapp': '34922971723',
     'zona': 'España · servicio en todas las comunidades autónomas',
     'lema': 'Tu cuaderno de campo, siempre al día',
 }

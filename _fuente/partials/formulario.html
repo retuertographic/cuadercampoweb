@@ -4,17 +4,18 @@
     <h2>{{ titulo }}</h2>
     <p class="entradilla">{{ texto }}</p>
     <ul class="info-list" style="margin-top:26px">
-      <li><span class="ico">{{ ico:mail }}</span><div><b>Escríbenos</b><span><a href="mailto:{{ email }}">{{ email }}</a></span></div></li>
+      <li><span class="ico">{{ ico:whatsapp }}</span><div><b>WhatsApp</b><span><a href="https://wa.me/{{ whatsapp }}" rel="noopener" target="_blank">+34 922 971 723</a></span></div></li>
+      <li><span class="ico">{{ ico:mail }}</span><div><b>Correo</b><span><a href="mailto:{{ email }}">{{ email }}</a></span></div></li>
       <li><span class="ico">{{ ico:reloj }}</span><div><b>Te contestamos</b><span>En menos de un día laborable, de lunes a viernes</span></div></li>
       <li><span class="ico">{{ ico:llave }}</span><div><b>¿Ya tienes cuenta?</b><span><a href="{{ app_entrar }}" rel="noopener">Entra en tu cuaderno</a></span></div></li>
     </ul>
   </div>
   <div class="card form-card">
-    <form class="contact js-correo" data-to="{{ email }}" data-asunto="{{ asunto }}" action="mailto:{{ email }}" method="post" enctype="text/plain">
+    <form class="contact js-whatsapp" data-wa="{{ whatsapp }}" data-asunto="{{ asunto }}" action="https://wa.me/{{ whatsapp }}" method="get">
       {{ campos }}
       <label class="consent"><input type="checkbox" name="consent" required> <span>He leído y acepto la <a href="politica-de-privacidad.html">política de privacidad</a>.</span></label>
-      <button class="btn btn-primary" type="submit">{{ ico:mail }}{{ boton }}</button>
-      <p class="form-msg" role="status">Se abrirá tu programa de correo con el mensaje ya redactado. Si no ocurre nada, escríbenos a <a href="mailto:{{ email }}">{{ email }}</a>.</p>
+      <button class="btn btn-primary btn-wa" type="submit">{{ ico:whatsapp }}{{ boton }}</button>
+      <p class="form-msg" role="status">Se abrirá WhatsApp con tu mensaje ya redactado: solo tienes que pulsar enviar. Si no se abre, escríbenos al <a href="https://wa.me/{{ whatsapp }}" rel="noopener" target="_blank">+34 922 971 723</a> o a <a href="mailto:{{ email }}">{{ email }}</a>.</p>
     </form>
   </div>
 </div></div></section>
