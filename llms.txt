@@ -1,6 +1,6 @@
 # CuaderCampo
 
-> Tu cuaderno de campo, siempre al día. Cuaderno de campo digital para agricultores, cooperativas y asesores en España, preparado para el SIEX (cuaderno digital de explotación agrícola, Real Decreto 1054/2022). Recintos SIGPAC, plantaciones, tratamientos fitosanitarios con validaciones, fertilización, riego, cosechas e inventario desde el móvil.
+> Tu cuaderno de campo, siempre al día. Cuaderno de campo digital para agricultores y cooperativas en España, preparado para el SIEX (cuaderno digital de explotación agrícola, Real Decreto 1054/2022). Recintos SIGPAC, plantaciones, tratamientos fitosanitarios con validaciones, fertilización, riego, cosechas e inventario desde el móvil.
 
 Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Contacto: hola@cuadercampo.com
 
@@ -16,13 +16,13 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 - **Plantaciones**: Cultivos, variedades y marcos de plantación de cada finca.
 - **Tratamientos fitosanitarios**: Registro fitosanitario conforme a la normativa, con validaciones antes de guardar.
 - **Asistente de IA por voz y chat**: Díctalo en voz alta o escríbelo: el asistente rellena el registro por ti.
-- **Fertilización y plan de abonado**: Abonados con sus unidades fertilizantes de N, P y K por hectárea.
+- **Fertilización N, P y K**: Abonados con sus unidades fertilizantes de N, P y K por hectárea.
 - **Riego**: Riegos por plantación, con su volumen y la procedencia del agua.
 - **Cosechas y trazabilidad**: La producción de cada plantación, con su destino y los plazos de seguridad.
 - **Labores culturales**: Poda, siembra, desbroce, recolección… sin horas ni costes.
 - **Inventario y facturas**: El stock se descuenta solo al aplicar.
-- **Personas, aplicadores y maquinaria**: Quién trabaja en la finca, sus carnets y los equipos con los que aplicas.
-- **Asesoramiento técnico**: Visitas, instrucciones y validación de tu asesor con su ROPO.
+- **Personas, aplicadores y maquinaria**: Los cargos del cuaderno, los carnets de los aplicadores y los equipos con los que aplicas.
+- **Asesoramiento técnico de tu cooperativa**: Visitas, instrucciones y validación del técnico de tu cooperativa con su ROPO.
 - **Cooperativas**: Comparte cada finca con tu cooperativa, con el nivel de acceso que elijas.
 - **Cuaderno digital oficial (SIEX)**: Preparado para el cuaderno digital obligatorio.
 
@@ -30,8 +30,8 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 
 - [Agricultores](https://cuadercampo.com/para-agricultores.html): Anota tratamientos, riegos y cosechas desde el móvil, en el mismo tajo. El cuaderno oficial se hace solo.
 - [Cooperativas](https://cuadercampo.com/para-cooperativas.html): Un panel con las fincas que tus socios comparten contigo, técnicos asignados y tratamientos validados con ROPO.
-- [Asesores y técnicos](https://cuadercampo.com/para-asesores.html): Visitas, instrucciones y validaciones con tu ROPO, sobre datos de campo reales y en formato oficial.
-- [Explotaciones con equipo](https://cuadercampo.com/para-explotaciones.html): Empleados con cargos, aplicadores con carnet, maquinaria con ITEAF e inventario por lotes. Varios titulares, un solo panel.
+- [Técnicos de cooperativa](https://cuadercampo.com/para-asesores.html): Visitas, instrucciones y validaciones con tu ROPO, sobre datos de campo reales y en formato oficial.
+- [Explotaciones grandes](https://cuadercampo.com/para-explotaciones.html): Fincas y hectáreas ilimitadas, aplicadores con carnet, maquinaria con ITEAF e inventario por lotes, desde un solo panel.
 
 ## Cómo funciona
 
@@ -42,28 +42,28 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 5. Anota desde el campo: Tratamientos, abonados, riegos, labores y cosechas. A mano, por voz o escribiéndole al asistente de IA, en el tajo y en un minuto.
 6. Descarga y comparte: Tu cuaderno oficial en PDF, Excel o exportación SIEX. Compártelo con tu cooperativa si quieres.
 
-## Planes (precios con IGIC incluido, sin permanencia, pago anual con dos meses gratis, 30 días de prueba de CuaderFinca)
+## Planes (precio bajo consulta, sin permanencia, 30 días de prueba de CuaderFinca)
 
-  - CuaderHuerta: mensual 0 € (Gratis para siempre); anual 0 € (Gratis para siempre). Para empezar con una finca pequeña y dejar el papel.
-  - CuaderFinca: mensual 12 €/mes (Facturado cada mes · IGIC incluido); anual 9,90 €/mes (118,80 € al año · ahorras 25,20 €). Para el agricultor profesional que quiere cumplir sin perder tiempo.
-  - CuaderExplotación: mensual 29 €/mes (Facturado cada mes · IGIC incluido); anual 24 €/mes (288 € al año · ahorras 60 €). Para explotaciones con equipo, varios titulares o muchas hectáreas.
-  - CuaderCooperativa: mensual A medida (Desde 1,50 € por finca gestionada y mes); anual A medida (Desde 1,25 € por finca y mes, facturado al año). Para cooperativas, SAT y empresas de asesoramiento.
+  - CuaderHuerta: Para empezar con una finca pequeña y dejar el papel. Incluye: 1 finca y hasta 5 ha, Recintos SIGPAC y mapa, Plantaciones, labores, riegos y cosechas, Tratamientos con vademécum y validaciones, Asistente de IA: 30 anotaciones al mes, Cuaderno en PDF, App instalable en el móvil.
+  - CuaderFinca: Para el agricultor profesional que quiere cumplir sin perder tiempo. Incluye: Hasta 3 fincas y 60 ha, Todo lo de CuaderHuerta, Asistente de IA: 150 anotaciones al mes, Fertilización con unidades N, P y K, Inventario por lotes y facturas de compra, Aplicadores, carnets y maquinaria ITEAF, Compartir la finca con tu cooperativa gestora, Exportación oficial SIEX, PDF y Excel.
+  - CuaderExplotación: Para el agricultor con muchas fincas o muchas hectáreas. Incluye: Fincas y hectáreas ilimitadas, Todo lo de CuaderFinca, Asistente de IA: 500 anotaciones al mes, Biblioteca de documentos de la finca, Soporte prioritario por correo y teléfono.
+  - CuaderCooperativa: Para cooperativas y SAT que gestionan las fincas de sus socios. Incluye: Panel de cooperativa con todas las fincas, Técnicos y asignación de fincas, Asistente de IA: 40 anotaciones por finca y mes, compartidas, Solicitudes de gestión aceptadas por el agricultor, Instrucciones de tratamiento del técnico (ROPO), Etiqueta con el color de tu cooperativa, Tu propia clave de IA (BYOK) sin límite de anotaciones, 15 % de descuento para tus socios en CuaderFinca y CuaderExplotación, Alta y formación de tus socios.
 
 ## Preguntas frecuentes
 
-- **¿Qué es CuaderCampo?** Es un cuaderno de campo digital para agricultores, cooperativas y asesores. Registras recintos, plantaciones, tratamientos, abonados, riegos, labores y cosechas desde el móvil, y CuaderCampo genera el cuaderno de explotación oficial, preparado para el SIEX.
+- **¿Qué es CuaderCampo?** Es un cuaderno de campo digital para agricultores y cooperativas. Registras recintos, plantaciones, tratamientos, abonados, riegos, labores y cosechas desde el móvil, y CuaderCampo genera el cuaderno de explotación oficial, preparado para el SIEX.
 - **¿Es obligatorio el cuaderno de campo digital?** El cuaderno de explotación es obligatorio desde hace años para quien usa productos fitosanitarios. El Real Decreto 1054/2022 crea el Sistema de Información de Explotaciones Agrícolas (SIEX) y el cuaderno digital, cuya obligatoriedad se aplica de forma progresiva según el calendario que marcan el Ministerio y las comunidades autónomas. CuaderCampo te deja preparado tanto si ya te afecta como si no.
 - **¿Qué es el SIEX?** Es el sistema oficial en el que se integra la información de las explotaciones agrícolas: la declaración de cultivos, el cuaderno digital y los registros de tratamientos y fertilización. CuaderCampo guarda tus datos con los códigos y catálogos oficiales y exporta el cuaderno en el formato validado.
 - **¿Necesito instalar algo?** No. CuaderCampo funciona desde el navegador del móvil, la tableta o el ordenador. Si quieres, la añades a la pantalla de inicio y se abre como una app, sin pasar por ninguna tienda.
-- **¿Cuánto cuesta?** El plan CuaderHuerta es gratuito para una finca de hasta 5 hectáreas. El plan CuaderFinca cuesta 12 €/mes (9,90 €/mes si pagas al año) y el plan CuaderExplotación 29 €/mes (24 €/mes al año). Todos los precios llevan el IGIC incluido. Las cooperativas tienen un plan a medida. Puedes probar el plan CuaderFinca gratis durante 30 días.
-- **¿Puedo cambiar de plan o darme de baja?** Sí, cuando quieras y desde tu cuenta. Si bajas al plan gratuito, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.
-- **¿De quién son mis datos?** Tuyos. Tú decides con qué cooperativa o asesor compartes cada finca y con qué nivel de acceso, y puedes retirarlo. No vendemos ni cedemos tus datos a terceros.
+- **¿Cuánto cuesta?** Tenemos planes para una finca pequeña, para el agricultor profesional, para explotaciones con muchas fincas y para cooperativas. El precio depende de tu caso: escríbenos y te lo enviamos sin compromiso. Puedes probar el plan CuaderFinca durante 30 días.
+- **¿Puedo cambiar de plan o darme de baja?** Sí, cuando quieras y desde tu cuenta. Si bajas al plan CuaderHuerta, no pierdes tus registros: sigues pudiendo consultarlos y descargar tus cuadernos.
+- **¿De quién son mis datos?** Tuyos. Tú decides qué cooperativa gestiona cada finca y con qué nivel de acceso, y puedes retirarlo. No vendemos ni cedemos tus datos a terceros.
 - **¿Puedo importar mis recintos SIGPAC?** Sí. Puedes importar tus recintos o dibujarlos sobre el mapa. Después los agrupas en huertas (UHC) si los trabajas de forma conjunta.
 - **¿Cómo sé qué productos puedo usar?** El vademécum de fitosanitarios incluye los usos autorizados, las dosis y los plazos de seguridad. Al registrar una aplicación, CuaderCampo te avisa si el producto no está autorizado para tu cultivo, si su registro ha caducado o si la dosis está fuera de rango.
 - **¿Qué pasa si me equivoco al registrar un tratamiento?** Puedes editarlo o anularlo. Una aplicación anulada no se borra: queda registrada como anulada, con su motivo, y el producto vuelve al inventario.
 - **¿Funciona en toda España?** Sí. CuaderCampo trabaja con SIGPAC y con los catálogos oficiales del Ministerio, válidos en todas las comunidades autónomas, también en Canarias.
 - **¿Puedo anotar por voz?** Sí. Pulsa el micrófono y di lo que has hecho, por ejemplo «He tratado el Olivar 1 con cobre a 2,5 litros por hectárea». El asistente de IA prepara el registro con la plantación, el producto, la dosis y la fecha, y te lo enseña para que lo revises antes de guardarlo. Si lo prefieres, escríbeselo en el chat.
-- **¿El asistente de IA es un extra de pago?** No. Viene incluido en CuaderFinca, CuaderExplotación y CuaderCooperativa, y CuaderHuerta incluye 30 anotaciones por voz o chat al mes. Si prefieres usar tu propia clave de un proveedor de IA (BYOK), puedes hacerlo sin coste adicional.
+- **¿El asistente de IA es un extra de pago?** No. Viene incluido en todos los planes con un número de anotaciones al mes: 30 en CuaderHuerta, 150 en CuaderFinca y 500 en CuaderExplotación. En CuaderCooperativa hay 40 por finca gestionada y mes, o sin límite si la cooperativa usa su propia clave de IA. Si las agotas, sigues anotando igual con los formularios.
 - **¿Puede el asistente guardar algo sin que yo lo vea?** No. El asistente solo propone: cada registro pasa por las validaciones de dosis, plazos y autorizaciones y no se guarda hasta que tú lo confirmas.
 - **¿Puedo descargar mi cuaderno?** Sí, en PDF para imprimir o enseñar en una inspección, en Excel para tu gestor y en el fichero oficial del cuaderno digital.
 
@@ -73,7 +73,7 @@ Web: https://cuadercampo.com/ · Aplicación: https://app.cuadercampo.com/ · Co
 - [Cuaderno digital SIEX](https://cuadercampo.com/cuaderno-digital-siex.html)
 - [Por cultivo](https://cuadercampo.com/cultivos.html)
 - [Ejemplos de uso](https://cuadercampo.com/ejemplos.html) (escenarios ilustrativos)
-- [Planes y precios](https://cuadercampo.com/planes.html)
+- [Planes](https://cuadercampo.com/planes.html)
 - [Quiénes somos](https://cuadercampo.com/quienes-somos.html)
 - [Preguntas frecuentes](https://cuadercampo.com/preguntas-frecuentes.html)
 - [Contacto](https://cuadercampo.com/contacto.html)
