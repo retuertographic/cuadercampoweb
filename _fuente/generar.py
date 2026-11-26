@@ -8,6 +8,7 @@ import os
 import re
 from html import escape, unescape
 
+from blog import ARTICULOS
 from datos import (EMPRESA, APP, PENDIENTE, PLANES, PLAN_DESTACADO, PRUEBA_DIAS, PASOS, FUNCIONES,
                    TONOS, SOLUCIONES, CULTIVOS, EJEMPLOS, FAQ_GENERAL, POR_QUE, QUE_HACEMOS, VALORES,
                    HISTORIA, EQUIPO)
@@ -213,7 +214,7 @@ def pagina(slug, titulo, descripcion, cuerpo, activo=None, form=True, ld=None, f
         ('cultivos', 'brote', 'Por cultivo'), ('ejemplos', 'estrella', 'Ejemplos de uso')])
     sol_links = ''.join(li(s['slug'], s['ico'], s['nombre']) for s in SOLUCIONES)
     emp_links = ''.join(li(*x) for x in [
-        ('quienes-somos', 'personas', 'Quiénes somos'), ('preguntas-frecuentes', 'pregunta', 'Preguntas frecuentes'),
+        ('quienes-somos', 'personas', 'Quiénes somos'), ('blog', 'cuaderno', 'Blog'), ('preguntas-frecuentes', 'pregunta', 'Preguntas frecuentes'),
         ('contacto', 'mail', 'Contacto')]) + \
         '<li><a href="%s" rel="noopener">%s<span>Entrar en la app</span></a></li>' % (APP['entrar'], ico('llave'))
     if form:
@@ -1040,7 +1041,8 @@ def lista_paginas():
     return [('index', 'Inicio'), ('funciones', 'Funciones'), ('cultivos', '— Por cultivo'), ('ejemplos', '— Ejemplos de uso'),
             ('para-quien', 'Para quién')] + [(s['slug'], '— ' + s['nombre']) for s in SOLUCIONES] + [
         ('cuaderno-digital-siex', 'Cuaderno digital SIEX'), ('como-funciona', 'Cómo funciona'), ('planes', 'Planes'),
-        ('quienes-somos', 'Quiénes somos'), ('preguntas-frecuentes', 'Preguntas frecuentes'), ('contacto', 'Contacto'),
+        ('quienes-somos', 'Quiénes somos'), ('blog', 'Blog')] + [('blog-' + a['slug'], '— ' + a['titulo']) for a in ARTICULOS] + [
+        ('preguntas-frecuentes', 'Preguntas frecuentes'), ('contacto', 'Contacto'),
         ('aviso-legal', 'Aviso legal'), ('politica-de-privacidad', 'Política de privacidad'), ('cookies', 'Política de cookies'),
         ('mapa-web', 'Mapa web')]
 
@@ -1058,6 +1060,40 @@ def p_404():
                                               btn('index.html', 'Inicio') + btn('funciones.html', 'Funciones', 'btn-line') +
                                               btn('planes.html', 'Planes', 'btn-line') + btn_entrar('Entrar en la app', 'btn-line'))
     return pagina('404', 'Página no encontrada — CuaderCampo', 'Página no encontrada.', cuerpo, form=False)
+
+
+# ---------------------------------------------------------------- Blog
+MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+
+
+def fecha_larga(f):
+    a, m, d = f.split('-')
+    return '%d de %s de %s' % (int(d), MESES[int(m) - 1], a)
+
+
+def p_blog():
+    tarjetas = ''.join(
+        f'''<a class="card post-card" href="blog-{a['slug']}.html"><img src="assets/blog/{a['slug']}.jpg" alt="" loading="lazy" width="1200" height="1500">
+<span class="post-meta">{a['publico']} · {fecha_larga(a['fecha'])}</span><h3>{a['titulo']}</h3><p>{a['entradilla']}</p></a>'''
+        for a in sorted(ARTICULOS, key=lambda x: x['fecha'], reverse=True))
+    cuerpo = page_head('Blog de CuaderCampo', 'Ideas prácticas para llevar el cuaderno de campo al día, sin papeles y sin jaleo.',
+                       [('', 'Blog')], antetitulo='Del campo, para el campo') + \
+        f'<section><div class="wrap"><div class="grid g3 posts">{tarjetas}</div></div></section>'
+    return pagina('blog', 'Blog — CuaderCampo', 'Consejos y novedades sobre el cuaderno de campo digital, el SIEX y la gestión de la finca.', cuerpo)
+
+
+def p_articulo(a):
+    txt, href = a['cta']
+    ld = {'@type': 'BlogPosting', 'headline': a['titulo'], 'description': a['entradilla'], 'datePublished': a['fecha'],
+          'image': BASE + 'assets/blog/%s.jpg' % a['slug'], 'author': {'@type': 'Organization', 'name': 'CuaderCampo'}}
+    cuerpo = page_head(a['titulo'], a['entradilla'], [('blog.html', 'Blog'), ('', a['titulo'])],
+                       antetitulo=a['publico']) + f'''<section><div class="wrap articulo">
+<p class="post-meta">{fecha_larga(a['fecha'])}</p>
+<img class="post-img" src="assets/blog/{a['slug']}.jpg" alt="" width="1200" height="1500">
+<div class="post-cuerpo">{a['cuerpo']}</div>
+<p class="post-cta">{btn(href, txt, 'btn-primary', externo=href.startswith('http'))} {btn('blog.html', 'Más artículos', 'btn-line')}</p>
+</div></section>'''
+    return pagina('blog-' + a['slug'], a['titulo'] + ' — CuaderCampo', a['entradilla'], cuerpo, ld=ld)
 
 
 # ---------------------------------------------------------------- llms.txt
@@ -1135,6 +1171,9 @@ def main():
     }
     for s in SOLUCIONES:
         paginas[s['slug']] = p_solucion(s)
+    paginas['blog'] = p_blog()
+    for a in ARTICULOS:
+        paginas['blog-' + a['slug']] = p_articulo(a)
     for slug, html in paginas.items():
         escribir(os.path.join(RAIZ, slug + '.html'), html)
     # GitHub Pages sirve 404.html en cualquier ruta: <base> fija los enlaces relativos.
