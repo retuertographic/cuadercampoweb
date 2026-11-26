@@ -43,6 +43,6 @@ GitHub Pages (Deploy from a branch, carpeta raíz) con dominio propio `cuadercam
 ## Pendiente
 
 - Titular, NIF y domicilio en el aviso legal y la privacidad (marcados «pendiente de completar»).
-- Confirmar el correo `hola@cuadercampo.com` y las rutas exactas de registro/alta en la app.
+- Correo de contacto: `info@cuadercampo.com`. Confirmar y las rutas exactas de registro/alta en la app.
 
 Planes: CuaderHuerta, CuaderFinca, CuaderExplotación y CuaderCooperativa, con precios finales con IGIC incluido e interruptor mensual/anual (`PLANES` en `_fuente/datos.py`; el anual equivale a dos meses gratis). El asistente de IA por voz y chat es el módulo `asistente` de `FUNCIONES`.

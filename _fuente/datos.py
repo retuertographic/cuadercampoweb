@@ -8,7 +8,7 @@ Las marcas «pendiente» se completan antes de publicar datos legales definitivo
 EMPRESA = {
     'nombre': 'CuaderCampo',
     'base_url': 'https://cuadercampo.com/',
-    'email': 'hola@cuadercampo.com',
+    'email': 'info@cuadercampo.com',
     # WhatsApp que recibe los formularios y las altas en novedades (formato internacional sin + ni 00)
     'whatsapp': '34922971723',
     'zona': 'España · servicio en todas las comunidades autónomas',
